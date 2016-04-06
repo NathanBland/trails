@@ -17,6 +17,7 @@ app.use(bodyParser.json())
 var port = process.env.PORT || 8080
 
 app.get('/', function (req, res, next) {
+  console.log('index loaded')
   return fs.readFile("./index.html", function(err, data) {
     if (err) {
       next(err)
@@ -28,7 +29,7 @@ app.get('/', function (req, res, next) {
     });
 })
 
-app.use(routes)
+app.use('/api',routes)
 
 app.listen(port)
 console.log('Trail data on port ' + port)
