@@ -1,23 +1,34 @@
+'use strict'
+
 var express = require('express')
 var router = module.exports = express.Router()
 var Trail = require('../../models/trail')
-
 router.route('/') // this is /api/trails
     .get(function(req, res, next) {
       // query string will need updating.
-      console.log('request:', JSON.parse(req.query.box))
-      Trail.find({
-        geometry: {
-          "$geoWithin": {
-            "$box":JSON.parse(req.query.box)
+      var query = {}
+      if (req.query.center) {
+        var pointArray = JSON.parse(req.query.center)
+        query = {
+          geometry: {
+            $near: {
+              $geometry: {
+                type: "Point", 
+                coordinates: pointArray
+              }
+            }
           }
         }
-      })
-      .limit(50)
+      }
+      Trail.find(query)
+      .limit(500)
       .sort('')
       .exec()
       .then(
-        trails => res.status(200).json(trails),
+        trails => {
+          console.log('found trails:', trails.length)
+          res.status(200).json(trails)
+        },
         err => res.status(500).json({'error': 'Internal Server Error', err })
        )
     })

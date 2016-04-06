@@ -9,9 +9,7 @@ const Trail = new Schema({
       type: String,
       default: "MultiLineString"
     },
-    coordinates: [{
-      type: Array
-    }]
+    coordinates: Schema.Types.Mixed
   },
   properties: {
     "PERMANENT_": String,
