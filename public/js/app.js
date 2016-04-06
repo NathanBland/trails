@@ -99,8 +99,9 @@
     }
 
     function createTrail(e) {
+        var trail = document.querySelector('#form--create-trail')
         e.preventDefault();
-        var name = trail.querySelecttor("input");
+        var name = document.querySelector("#form--create-trail input");
         console.log('trail', name.value);
         if (name.value !== '') {
             var newTrail = {
