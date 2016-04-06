@@ -27,7 +27,7 @@ function getGeoJSON() {
       }
       GeoJSON = L.geoJson(newJSON, {
         onEachFeature: function eachFeature(feature, layer){
-          layer.bindPopUp(feature.properties.NAME)
+          layer.bindPopup(feature.properties.NAME)
         }
       }).addTo(map); //Add the new GeoJSON
     });
