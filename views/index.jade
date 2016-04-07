@@ -22,19 +22,23 @@ html(lang='en')
       .trail__List
         h2.header Current Trails
         // mocked
-        .trail__item
-          //.trail__item--figure
-          //  i.fa.fa-camera
-          .trail__item--body
-            .trail__item--header
-              h3 Pipeline
-            ul.trail__item--details
-              li 
-                span distance:
-                |  5 miles
-              li 
-                span elevation:
-                |  9,000 ft.
+        - var n = 0
+        while n < 10
+          - n += 1
+          .trail__item
+            //.trail__item--figure
+            //  i.fa.fa-camera
+            .trail__item--body
+              .trail__item--header
+                h3 Pipeline
+              ul.trail__item--details            
+                li 
+                  span distance:
+                  |  5 miles
+                li 
+                    span elevation:
+                  |  9,000 ft.
+                 
               
           
     script(type='text/javascript', src='/js/leaflet.js')
