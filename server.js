@@ -8,7 +8,9 @@ var fs = require('fs')
 app.use(express.static(__dirname + '/public'))
 
 app.set('view engine', 'jade')
-
+if (!config.db) {
+  config.db = process.env.db
+}
 mongoose.connect('mongodb://'+config.db.user+':'+config.db.pass+'@ds017070.mlab.com:17070/trails')
 
 app.use(bodyParser.urlencoded({ extended: false }))
