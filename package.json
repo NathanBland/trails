@@ -1,0 +1,34 @@
+{
+  "name": "trails",
+  "version": "1.0.0",
+  "description": "a web utility designed to make finding trails easy",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "jade": "^1.11.0",
+    "mongoose": "^4.4.11",
+    "mongoose-geojson-schema": "^0.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NathanBland/trails.git"
+  },
+  "keywords": [
+    "trails",
+    "GIS",
+    "national",
+    "forest"
+  ],
+  "author": "Nathan Bland",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NathanBland/trails/issues"
+  },
+  "homepage": "https://github.com/NathanBland/trails#readme"
+}
