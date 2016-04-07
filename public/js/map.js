@@ -48,6 +48,9 @@ function updateURL (center, zoom){
 function getDefaults(){
   //return the center and the zoom level
   var data = window.location.hash.split(',')
+  if(data.length !== 3){
+    return {}
+  }
   return {
     center: [
       data[0],
