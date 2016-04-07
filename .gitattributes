@@ -1,0 +1,2 @@
+trails.json filter=lfs diff=lfs merge=lfs -text
+trail-heads.json filter=lfs diff=lfs merge=lfs -text
