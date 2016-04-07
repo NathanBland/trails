@@ -43,3 +43,4 @@ router.route('/:id') // this is /api/trails/:id
           err => res.status(500).json({'error': 'Internal Server Error', err })
         )
     })
+  
