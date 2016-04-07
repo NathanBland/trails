@@ -6,7 +6,9 @@
   "dependencies": {
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
+    "fetch": "^1.0.1",
     "jade": "^1.11.0",
+    "leaflet": "^0.7.7",
     "mongoose": "^4.4.11",
     "mongoose-geojson-schema": "^0.0.2",
     "node-sass-middleware": "^0.9.8",

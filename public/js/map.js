@@ -1,5 +1,9 @@
-/*global L*/
-/*global fetch*/
+import Fetch from 'fetch'
+import L from 'leaflet'
+
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'thunk'
+
 
 var myStyle = {
     "color": "#006400",
@@ -35,12 +39,12 @@ function getGeoJSON() {
         style: myStyle,
         onEachFeature: function eachFeature(feature, layer){
           layer.bindPopup(
-            '<p>'
-              + (feature.properties.NAME || 'No name given') +
-            '</p>' +
-            '<p>' +
-              feature.properties.length_km+ ' KM' +
-            '</p>'
+            `<p>
+              ${feature.properties.NAME || 'No name given'}
+            </p>
+            <p>
+              ${feature.properties.length_km} KM
+            </p>`
           )
         }
       }).addTo(map); //Add the new GeoJSON
