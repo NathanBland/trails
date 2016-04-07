@@ -8,7 +8,8 @@
     "express": "^4.13.4",
     "jade": "^1.11.0",
     "mongoose": "^4.4.11",
-    "mongoose-geojson-schema": "^0.0.2"
+    "mongoose-geojson-schema": "^0.0.2",
+    "node-sass-middleware": "^0.9.8"
   },
   "devDependencies": {},
   "scripts": {
