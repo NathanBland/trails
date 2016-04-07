@@ -12,17 +12,13 @@ const Trail = new Schema({
     coordinates: Schema.Types.Mixed
   },
   properties: {
-    "PERMANENT_": String,
-    "SOURCE_FEA": String,
-    "SOURCE_DAT": String,
     "SOURCE_D00": String,
     "SOURCE_ORI": String,
     "NAME": String,
-    "LENGTH": Number,
-    "SHAPE_LENG": String,
     "FTYPE": String,
-    "FCODE": String
+    "FCODE": String,
+    "length_km": Number
   }
-})
+}, {collection: 'newTrails'})
 
-module.exports = mongoose.model('newTrail', Trail)
+module.exports = mongoose.model('trail', Trail, 'newTrails')
