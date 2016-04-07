@@ -54,7 +54,7 @@ function getDefaults(){
   return {
     center: [
       parseFloat(data[0]),
-      parseFloatdata([1])
+      parseFloat(data([1])
     ],
     zoom: parseFloat(data[2])
   }
