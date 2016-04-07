@@ -15,7 +15,7 @@ router.route('/') // this is /api/trails
           geometry: {
             $near: {
               $geometry: {
-                type: "Point", 
+                type: "Point",
                 coordinates: pointArray
               }
             }
@@ -42,4 +42,4 @@ router.route('/:id') // this is /api/trails/:id
           trails => res.status(200).json(trails),
           err => res.status(500).json({'error': 'Internal Server Error', err })
         )
-    })  
+    })
