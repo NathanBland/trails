@@ -25,4 +25,4 @@ const Trail = new Schema({
   }
 })
 
-module.exports = mongoose.model('trail', Trail)
+module.exports = mongoose.model('newTrail', Trail)
