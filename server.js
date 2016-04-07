@@ -23,6 +23,7 @@ app.use(
   })
 )
 app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/.build'))
 
 app.set('view engine', 'jade')
 
