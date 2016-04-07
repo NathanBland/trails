@@ -47,15 +47,15 @@ function updateURL (center, zoom){
 
 function getDefaults(){
   //return the center and the zoom level
-  var data = window.location.hash.split(',')
+  var data = window.location.hash.substring(1).split(',')
   if(data.length !== 3){
     return {}
   }
   return {
     center: [
-      data[0],
-      data[1]
+      parseFloat(data[0]),
+      parseFloatdata([1])
     ],
-    zoom: data[2]
+    zoom: parseFloat(data[2])
   }
 }
