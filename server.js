@@ -4,8 +4,11 @@ var bodyParser = require('body-parser')
 var routes = require('./routes/api')
 var mongoose = require('mongoose')
 var config = require('./config') || {
-  'db.user': process.env.dbUser,
-  'db.pass': process.env.dbPass }
+  db: {
+    user: process.env.dbUser,
+    pass: process.env.dbPass 
+  }
+}
 var fs = require('fs')
 app.use(express.static(__dirname + '/public'))
 
