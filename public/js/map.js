@@ -22,6 +22,7 @@ map.addEventListener('moveend', getGeoJSON);
 map.addEventListener('resize', getGeoJSON);
 function getGeoJSON() {
   var center = map.getBounds().getCenter();
+  updateURL([center.lng, center.lat], map.getZoom())
   fetch('/api/trails?center=' + JSON.stringify([center.lng, center.lat]))
     .then(function(res) {
       return res.json()
