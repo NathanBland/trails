@@ -4,6 +4,7 @@ var express = require('express')
 var router = module.exports = express.Router()
 var Trail = require('../../models/trail')
 
+
 router.route('/') // this is /api/trails
     .get(function(req, res, next) {
       // query string will need updating.
@@ -41,5 +42,4 @@ router.route('/:id') // this is /api/trails/:id
           trails => res.status(200).json(trails),
           err => res.status(500).json({'error': 'Internal Server Error', err })
         )
-    })
-  
+    })  
