@@ -40,18 +40,3 @@ function getGeoJSON() {
       }).addTo(map); //Add the new GeoJSON
     });
 }
-
-
-// var geojsonURL = '/api/trails/{z}/{x}/{y}';
-// var geojsonTileLayer = new L.TileLayer.GeoJSON(geojsonURL, {
-//         clipTiles: true,
-//         unique: function (feature) {
-//             return feature._id; 
-//         }
-//     }, {
-//       style: myStyle,
-//       onEachFeature: function eachFeature(feature, layer){
-//         layer.bindPopup(feature.properties.NAME || 'No name given')
-//       }
-//     }
-// ).addTo(map);
