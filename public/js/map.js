@@ -7,11 +7,9 @@ var myStyle = {
     "opacity": 0.65
 };
 
+var options = Object.assign({ center: [39.5501, -105.7821], zoom: 10 }, getDefaults())
+var map = L.map('map', options);
 
-var map = L.map('map', {
-  center: [39.5501, -105.7821],
-  zoom: 10
-});
 //'http://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}'
 //
 L.tileLayer('https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png', {
@@ -41,17 +39,11 @@ function getGeoJSON() {
     });
 }
 
+function updateURL(center, zoom){
+  //update the current url
+}
 
-// var geojsonURL = '/api/trails/{z}/{x}/{y}';
-// var geojsonTileLayer = new L.TileLayer.GeoJSON(geojsonURL, {
-//         clipTiles: true,
-//         unique: function (feature) {
-//             return feature._id; 
-//         }
-//     }, {
-//       style: myStyle,
-//       onEachFeature: function eachFeature(feature, layer){
-//         layer.bindPopup(feature.properties.NAME || 'No name given')
-//       }
-//     }
-// ).addTo(map);
+function getDefaults(){
+  //return the center and the zoom level
+  return {}
+}
