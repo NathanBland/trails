@@ -3,7 +3,6 @@
 var express = require('express')
 var router = module.exports = express.Router()
 var Trail = require('../../models/trail')
-var utils = require('./utils')
 
 router.route('/') // this is /api/trails
     .get(function(req, res, next) {
