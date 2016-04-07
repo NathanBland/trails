@@ -3,10 +3,10 @@ var app = express()                 // define our app using express
 var bodyParser = require('body-parser')
 var routes = require('./routes/api')
 var mongoose = require('mongoose')
-var config = require('./config') || {
+var config = {
   db: {
     user: process.env.dbUser,
-    pass: process.env.dbPass 
+    pass: process.env.dbPass
   }
 }
 var fs = require('fs')
