@@ -34,7 +34,14 @@ function getGeoJSON() {
       GeoJSON = L.geoJson(newJSON, {
         style: myStyle,
         onEachFeature: function eachFeature(feature, layer){
-          layer.bindPopup(feature.properties.NAME || 'No name given')
+          layer.bindPopup(
+            '<p>'
+              + (feature.properties.NAME || 'No name given') +
+            '</p>' +
+            '<p>' +
+              feature.properties.length_km+ ' KM' +
+            '</p>'
+          )
         }
       }).addTo(map); //Add the new GeoJSON
     });
