@@ -49,8 +49,10 @@ function getDefaults(){
   //return the center and the zoom level
   var data = window.location.hash.split(',')
   return {
-    lat: data[0],
-    lon: data[1],
+    center: [
+      data[0],
+      data[1]
+    ],
     zoom: data[2]
   }
 }
