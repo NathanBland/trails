@@ -40,7 +40,7 @@ function getDefaults(){
   }
 }
 
-const options = Object.assign({ center: [39.5501, -105.7821], zoom: 10, geojson: [] }, getDefaults())
+const options = Object.assign({ center: [39.5501, -105.7821], zoom: 10, geojson: { loading: false, data: [] } }, getDefaults())
 const store = createStore(
     reducer,
     { map: options },
@@ -74,7 +74,7 @@ const map = ({
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
         {
-            GeoJSON.map(feature => (
+            GeoJSON.data.map(feature => (
                <GeoJson
                     key={feature._id}
                     data={feature}
@@ -108,6 +108,9 @@ function getGeoJSON(ev) {
 //            center: [center.lat, center.lng], 
 //            zoom: map.getZoom()
         }
+    })
+    dispatch({
+        type:'GET_GEOJSON'
     })
     const center = getState().map.center
     fetch('/api/trails?center=' + JSON.stringify([center[1], center[0]]))
