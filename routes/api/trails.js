@@ -25,6 +25,7 @@ router.route('/') // this is /api/trails
       Trail.find(query)
       .limit(100)
       .sort('')
+      .lean()
       .exec()
       .then(
         trails => {
