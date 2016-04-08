@@ -44,7 +44,7 @@ function getGeoJSON() {
               + (feature.properties.NAME || 'No name given') +
             '</p>' +
             '<p>' +
-              0.621371 * feature.properties.length_km + ' Miles' +
+              (0.621371 * feature.properties.length_km).toFixed(2) + ' Miles' +
             '</p>'
           )
         }
