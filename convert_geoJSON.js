@@ -1,5 +1,5 @@
 function fixCoordinates(coor){
-    if(Array.isArray(coor[0])) return coord.map(fixCoordinates)
+    if(Array.isArray(coor[0])) return coor.map(fixCoordinates)
     return [coor[0], coor[1]]
 }
 
