@@ -66,8 +66,8 @@ const map = ({
         id="map"
         center={center} 
         zoom={zoom}
-        onLeafletMoveend={(ev) => dispatch(getGeoJSON.bind(this, ev))}
-        onLeafletResize={(ev) => dispatch(getGeoJSON.bind(this, ev))}
+        onLeafletMoveend={(ev) => dispatch(getGeoJSON(ev))}
+        onLeafletResize={(ev) => dispatch(getGeoJSON(ev))}
     >
         <TileLayer
             url='https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'
@@ -76,7 +76,7 @@ const map = ({
         {
             GeoJSON.map(feature => (
                <GeoJson
-                    id={feature._id}
+                    key={feature._id}
                     data={feature}
                     style={myStyle}
                     onEachFeature={function eachFeature(feature, layer){
