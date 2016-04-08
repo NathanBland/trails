@@ -1,6 +1,7 @@
 .grid {
   display: flex;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  flex-flow: row wrap; }
 
 .header {
   text-align: center;
@@ -73,6 +74,11 @@
     font-weight: bold; }
 
 /* media queries */
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .trail__List {
-    flex: 0; } }
+    flex: 1 1 100%;
+    max-height: 10000px; }
+  .map__options {
+    z-index: 0; }
+  .zVisible {
+    z-index: 1; } }

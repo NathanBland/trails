@@ -54,15 +54,18 @@ function getGeoJSON() {
 
 function toggleSettings () {
   var settingsPanel = document.querySelector('.map__options--settings')
+  var settingsContainer = document.querySelector('.map__options')
   //var settingsState = (settingsPanel.style.visibility ? 'visible' : 'hidden')
   var settingsState = settingsPanel.style.visibility || 'hidden'
   console.log('settingsState:', settingsState)
   if (settingsState === 'hidden') {
     settingsPanel.style.visibility = 'visible'
     settingsPanel.style.opacity = 1
+    settingsContainer.classList.add('zVisible')
   } else {
     settingsPanel.style.visibility = 'hidden'
     settingsPanel.style.opacity = 0
+    settingsContainer.classList.remove('zVisible')
   }
 }
 
