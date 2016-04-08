@@ -46,6 +46,9 @@
   overflow-y: auto; }
 
 .trail__item {
+  background-color: #1e5f1e;
+  color: white;
+  border-bottom: 1px dashed white;
   display: flex;
   align-items: flex-start;
   box-sizing: border-box;
