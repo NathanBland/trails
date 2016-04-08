@@ -133,6 +133,5 @@ ReactDOM.render(
     document.getElementById('root')
 )
 store.dispatch(getGeoJSON({}))
-const mapElement = document.getElementById('map')
-mapElement.addEventListener('moveend', (ev) => dispatch(getGeoJSON.bind(this, ev)))
-mapElement.addEventListener('resize', (ev) => dispatch(getGeoJSON.bind(this, ev)))
+window.addEventListener('moveend', (ev) => store.dispatch(getGeoJSON(ev)))
+window.addEventListener('resize', (ev) => store.dispatch(getGeoJSON(ev)))
