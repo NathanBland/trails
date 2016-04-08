@@ -68,6 +68,7 @@ const map = ({
         zoom={zoom}
         onLeafletMoveend={(ev) => dispatch(getGeoJSON(ev))}
         onLeafletResize={(ev) => dispatch(getGeoJSON(ev))}
+        onLeafletLoad={(ev) => dispatch(getGeoJSON(ev))}
     >
         <TileLayer
             url='https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'
@@ -100,20 +101,22 @@ const map = ({
 //Actions
 function getGeoJSON(ev) {
   return (dispatch, getState) => {
-    console.log(ev)
-//    var center = map.getBounds().getCenter();
+    const map = ev.target
+    let center = map.getBounds().getCenter();
+    center = { lat: parseFloat(center.lat.toFixed(4)), lng: parseFloat(center.lng.toFixed(4)) }
+    const current = getState()
+    if(center.lat === current.map.center[0] && center.lng === current.map.center[1]) return
     dispatch({
         type: 'SET_MAP',
         payload: {
-//            center: [center.lat, center.lng], 
-//            zoom: map.getZoom()
+            center: [center.lat, center.lng], 
+            zoom: map.getZoom()
         }
     })
     dispatch({
         type:'GET_GEOJSON'
     })
-    const center = getState().map.center
-    fetch('/api/trails?center=' + JSON.stringify([center[1], center[0]]))
+    fetch('/api/trails?center=' + JSON.stringify([center.lng, center.lat]))
         .then(function(res) {
         return res.json()
         })
@@ -141,6 +144,3 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 )
-store.dispatch(getGeoJSON({}))
-window.addEventListener('moveend', (ev) => store.dispatch(getGeoJSON(ev)))
-window.addEventListener('resize', (ev) => store.dispatch(getGeoJSON(ev)))
