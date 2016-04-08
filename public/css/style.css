@@ -19,7 +19,7 @@
 
 .map__options--settings {
   background-color: white;
-  box-shadow: 1px 1px 5px black;
+  box-shadow: 1px 1px 5px grey;
   visibility: hidden;
   opacity: 0;
   transition: 200ms all cubic-bezier(0.46, 0.03, 0.52, 0.96);
@@ -71,3 +71,8 @@
   list-style: none; }
   .trail__item--details li span {
     font-weight: bold; }
+
+/* media queries */
+@media (max-width: 768px) {
+  .trail__List {
+    flex: 0; } }
