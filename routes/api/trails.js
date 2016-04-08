@@ -10,9 +10,8 @@ router.route('/') // this is /api/trails
       // query string will need updating.
       var query = {}
       if (req.query.center) {
-        var queryArray = JSON.parse(req.query.center)
-        var pointArray = [queryArray[0].toFixed(3), queryArray[1].toFixed(3)]
-        console.log('query adjusted:', pointArray)
+        var pointArray = JSON.parse(req.query.center)
+        console.log('query:', pointArray)
         query = {
           geometry: {
             $near: {
