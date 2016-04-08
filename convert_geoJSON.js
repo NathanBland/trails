@@ -3,7 +3,7 @@ function fixCoordinates(coor){
     return [coor[0], coor[1]]
 }
 
-const GeoJSON = require('TRAILS_GEOJSON.json')
+const GeoJSON = require('./TRAILS_GEOJSON.json')
 
 const json = GeoJSON.features.map(feature => {
     feature = {
@@ -17,6 +17,7 @@ const json = GeoJSON.features.map(feature => {
             "length_km" : feature.properties.length_km
         },
         geometry: {
+            type: feature.geometry.type,
             coordinates: feature.geometry.coordinates.map(fixCoordinates)
         }
     }    
