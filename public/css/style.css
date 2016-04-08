@@ -10,6 +10,25 @@
   margin-top: 1.5rem;
   margin-bottom: 1.5rem; }
 
+.map__options {
+  position: absolute;
+  z-index: 10;
+  margin-left: 4.5rem;
+  padding: 1rem;
+  margin-top: -4.85rem; }
+
+.map__options--settings {
+  background-color: white;
+  box-shadow: 1px 1px 5px black;
+  visibility: hidden;
+  opacity: 0;
+  transition: 200ms all cubic-bezier(0.46, 0.03, 0.52, 0.96);
+  list-style: none;
+  padding: 2rem; }
+
+.map__options--distance input {
+  margin-left: .5em; }
+
 #map {
   flex: 1;
   display: block;

@@ -9,7 +9,7 @@ var myStyle = {
 
 var options = Object.assign({ center: [39.5501, -105.7821], zoom: 10 }, getDefaults())
 var map = L.map('map', options);
-
+var settingsButton = document.querySelector('.map__options--toggle')
 //'http://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}'
 //
 L.tileLayer('https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png', {
@@ -20,6 +20,7 @@ var GeoJSON;
 getGeoJSON()
 map.addEventListener('moveend', getGeoJSON);
 map.addEventListener('resize', getGeoJSON);
+settingsButton.addEventListener('click', toggleSettings)
 function getGeoJSON() {
   var centerExact = map.getBounds().getCenter();
   var center = {
@@ -49,6 +50,20 @@ function getGeoJSON() {
         }
       }).addTo(map); //Add the new GeoJSON
     });
+}
+
+function toggleSettings () {
+  var settingsPanel = document.querySelector('.map__options--settings')
+  //var settingsState = (settingsPanel.style.visibility ? 'visible' : 'hidden')
+  var settingsState = settingsPanel.style.visibility || 'hidden'
+  console.log('settingsState:', settingsState)
+  if (settingsState === 'hidden') {
+    settingsPanel.style.visibility = 'visible'
+    settingsPanel.style.opacity = 1
+  } else {
+    settingsPanel.style.visibility = 'hidden'
+    settingsPanel.style.opacity = 0
+  }
 }
 
 function updateURL (center, zoom){
