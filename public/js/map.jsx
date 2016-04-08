@@ -1,9 +1,9 @@
 import Fetch from 'fetch'
-import L from 'leaflet'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider, connect } from 'react-redux'
+
 //Middleware
 import thunk from 'redux-thunk'
 function updateURL (store){
@@ -73,20 +73,26 @@ const map = ({
             url='https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        <GeoJson
-            data={{type: 'FeatureCollection', features: GeoJSON}}
-            style={myStyle}
-            onEachFeature={function eachFeature(feature, layer){
-                layer.bindPopup(
-                    `<p>
-                        ${feature.properties.NAME || 'No name given'}
-                    </p>
-                    <p>
-                        ${feature.properties.length_km} KM
-                    </p>`
-                )
-            }}
-        />
+        {
+            GeoJSON.map(feature => (
+               <GeoJson
+                    id={feature._id}
+                    data={feature}
+                    style={myStyle}
+                    onEachFeature={function eachFeature(feature, layer){
+                        layer.bindPopup(
+                            `<p>
+                                ${feature.properties.NAME || 'No name given'}
+                            </p>
+                            <p>
+                                ${feature.properties.length_km} KM
+                            </p>`
+                        )
+                    }}
+                /> 
+            ))
+        }
+        
     </Map>
 )
 
