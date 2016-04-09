@@ -1,9 +1,9 @@
 import Fetch from 'fetch'
-import L from 'leaflet'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider, connect } from 'react-redux'
+
 //Middleware
 import thunk from 'redux-thunk'
 function updateURL (store){
@@ -40,7 +40,7 @@ function getDefaults(){
   }
 }
 
-const options = Object.assign({ center: [39.5501, -105.7821], zoom: 10, geojson: [] }, getDefaults())
+const options = Object.assign({ center: [39.5501, -105.7821], zoom: 10, geojson: { loading: false, data: [] } }, getDefaults())
 const store = createStore(
     reducer,
     { map: options },
@@ -66,27 +66,34 @@ const map = ({
         id="map"
         center={center} 
         zoom={zoom}
-        onLeafletMoveend={(ev) => dispatch(getGeoJSON.bind(this, ev))}
-        onLeafletResize={(ev) => dispatch(getGeoJSON.bind(this, ev))}
+        onLeafletMoveend={(ev) => dispatch(getGeoJSON(ev))}
+        onLeafletResize={(ev) => dispatch(getGeoJSON(ev))}
+        onLeafletLoad={(ev) => dispatch(getGeoJSON(ev))}
     >
         <TileLayer
             url='https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        <GeoJson
-            data={{type: 'FeatureCollection', features: GeoJSON}}
-            style={myStyle}
-            onEachFeature={function eachFeature(feature, layer){
-                layer.bindPopup(
-                    `<p>
-                        ${feature.properties.NAME || 'No name given'}
-                    </p>
-                    <p>
-                        ${feature.properties.length_km} KM
-                    </p>`
-                )
-            }}
-        />
+        {
+            GeoJSON.data.map(feature => (
+               <GeoJson
+                    key={feature._id}
+                    data={feature}
+                    style={myStyle}
+                    onEachFeature={function eachFeature(feature, layer){
+                        layer.bindPopup(
+                            `<p>
+                                ${feature.properties.NAME || 'No name given'}
+                            </p>
+                            <p>
+                                ${feature.properties.length_km} KM
+                            </p>`
+                        )
+                    }}
+                /> 
+            ))
+        }
+        
     </Map>
 )
 
@@ -94,17 +101,22 @@ const map = ({
 //Actions
 function getGeoJSON(ev) {
   return (dispatch, getState) => {
-    console.log(ev)
-//    var center = map.getBounds().getCenter();
+    const map = ev.target
+    let center = map.getBounds().getCenter();
+    center = { lat: parseFloat(center.lat.toFixed(4)), lng: parseFloat(center.lng.toFixed(4)) }
+    const current = getState()
+    if(center.lat === current.map.center[0] && center.lng === current.map.center[1]) return
     dispatch({
         type: 'SET_MAP',
         payload: {
-//            center: [center.lat, center.lng], 
-//            zoom: map.getZoom()
+            center: [center.lat, center.lng], 
+            zoom: map.getZoom()
         }
     })
-    const center = getState().map.center
-    fetch('/api/trails?center=' + JSON.stringify([center[1], center[0]]))
+    dispatch({
+        type:'GET_GEOJSON'
+    })
+    fetch('/api/trails?center=' + JSON.stringify([center.lng, center.lat]))
         .then(function(res) {
         return res.json()
         })
@@ -132,6 +144,3 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 )
-store.dispatch(getGeoJSON({}))
-window.addEventListener('moveend', (ev) => store.dispatch(getGeoJSON(ev)))
-window.addEventListener('resize', (ev) => store.dispatch(getGeoJSON(ev)))
