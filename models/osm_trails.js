@@ -39,6 +39,6 @@ const OSMTrail = new Schema({
 
     tracktype : String
   }
-}, {collection: 'trails'})
+}, {collection: 'osm_trails'})
 
-module.exports = mongoose.model('trail', OSMTrail)
+module.exports = mongoose.model('osm_trail', OSMTrail)
