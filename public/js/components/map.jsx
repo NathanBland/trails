@@ -11,16 +11,15 @@ const myStyle = {
   "weight": 5,
   "opacity": 0.65
 }
-
+const defs = getDefaults()
 const map = ({
-  center,
   zoom,
   GeoJSON,
   actions
 }) => (
   <Map
     id="map"
-    center={center}
+    center={defs.center}
     zoom={zoom}
     onLeafletMoveend={(ev) => actions.getGeoJSON(ev)}
     onLeafletResize={(ev) => actions.getGeoJSON(ev)}
