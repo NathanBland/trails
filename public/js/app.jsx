@@ -7,6 +7,7 @@ import reducer from './reducers'
 import middleware from './middleware'
 import { getDefaults } from './utils'
 
+const options = getDefaults()
 const store = createStore(
   reducer,
   { map: options },
@@ -14,6 +15,6 @@ const store = createStore(
 )
 
 ReactDOM.render(
-  <App />,
+  <App store={store} />,
   document.getElementById('root')
 )

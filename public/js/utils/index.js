@@ -10,8 +10,7 @@ export function getDefaults() {
         parseFloat(data[0]),
         parseFloat(data[1])
       ],
-      zoom: parseFloat(data[2]),
-      geojson: []
+      zoom: parseFloat(data[2])
     }
   }
 

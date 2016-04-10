@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Map, TileLayer, GeoJson, PopUp } from 'react-leaflet'
 
 import { getGeoJSON } from '../actions/map'
-import { getDefaults } from './utils'
+import { getDefaults } from '../utils'
 
 const myStyle = {
   "color": "#006400",
@@ -12,6 +12,7 @@ const myStyle = {
   "opacity": 0.65
 }
 const defs = getDefaults()
+
 const map = ({
   zoom,
   GeoJSON,
