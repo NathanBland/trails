@@ -6,11 +6,12 @@ var Trail = require('../../models/trail')
 
 
 router.route('/') // this is /api/trails
-    .get(function(req, res, next) {
+    .get(function (req, res, next) {
       // query string will need updating.
       var query = {}
       if (req.query.center) {
         var pointArray = JSON.parse(req.query.center)
+        console.log('query:', pointArray)
         query = {
           geometry: {
             $near: {

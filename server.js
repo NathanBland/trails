@@ -8,7 +8,8 @@ var bodyParser = require('body-parser'),
 var config = {
   db: {
     user: process.env.dbUser,
-    pass: process.env.dbPass
+    pass: process.env.dbPass,
+    name: process.env.dbName
   }
 }
 
@@ -27,7 +28,9 @@ app.use(express.static(__dirname + '/.build'))
 
 app.set('view engine', 'jade')
 
-mongoose.connect('mongodb://'+config.db.user+':'+config.db.pass+'@ds017070.mlab.com:17070/trails')
+console.log('running with config:', config)
+
+mongoose.connect('mongodb://'+config.db.user+':'+config.db.pass+'@ds017070.mlab.com:17070/'+config.db.name)
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())

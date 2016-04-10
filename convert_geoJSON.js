@@ -3,24 +3,25 @@ function fixCoordinates(coor){
     return [coor[0], coor[1]]
 }
 
-const GeoJSON = require('./TRAILS_GEOJSON.json')
+const GeoJSON = require('./data/points_filtered_compact.json')
 
-const json = GeoJSON.features.map(feature => {
+const json = GeoJSON .map(feature => {
     feature = {
         type: feature.type,
-        properties: {
-            "SOURCE_D00" : feature.properties.SOURCE_D00,
-            "SOURCE_ORI" : feature.properties.SOURCE_ORI,
-            "NAME" : feature.properties.NAME,
-            "FTYPE" : feature.properties.FTYPE,
-            "FCODE" : feature.properties.FCODE,
-            "length_km" : feature.properties.length_km
-        },
+        properties: feature.properties,
         geometry: {
             type: feature.geometry.type,
-            coordinates: feature.geometry.coordinates.map(fixCoordinates)
+            coordinates: feature.geometry.coordinates
         }
-    }    
+    }
+    if(feature.properties.other_tags){
+        const others = feature.properties.other_tags.split(',').reduce((obj, tag) => {
+            const a = tag.split('=>').map(key => key.replace('"', '').replace('"', ''))
+            obj[a[0]] = a[1] || ''
+            return obj
+        }, {})
+        feature.properties = Object.assign({}, feature.properties, others)
+    }
     return feature
 })
 json.forEach(feature => console.log(JSON.stringify(feature)))
