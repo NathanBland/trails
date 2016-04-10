@@ -15,11 +15,15 @@ const json = GeoJSON .map(feature => {
     }
   }
   if(feature.properties.other_tags){
-    const others = feature.properties.other_tags.split(/("[^"]+"=>\"[^"]+",?)/g).reduce((obj, tag) => {
-      const a = tag.split('=>').map(key => key.replace('"', '').replace('"', ''))
-      obj[a[0]] = a[1] || ''
-      return obj
-    }, {})
+    const others = feature
+      .properties
+      .other_tags
+      .match(/("[^"]+")(=>)("[^"]+")(, )?/g)
+      .map(tag => tag.replace(/"/g,'').split('=>'))
+      .reduce((obj, tag) => {
+        obj[tag[0]] = tag[1]
+        return obj
+      }, {})
     feature.properties = Object.assign({}, feature.properties, others)
   }
   return feature
