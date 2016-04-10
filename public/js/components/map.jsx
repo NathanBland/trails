@@ -7,9 +7,9 @@ import { getGeoJSON } from '../actions/map'
 import { getDefaults } from '../utils'
 
 const myStyle = {
-  "color": "#006400",
-  "weight": 5,
-  "opacity": 0.65
+  color: '#006400',
+  weight: 5,
+  opacity: 0.65
 }
 const defs = getDefaults()
 
@@ -43,23 +43,23 @@ const map = ({
 function eachFeature(feature, layer){
   layer.bindPopup(
     `<p>
-      ${feature.properties.NAME || 'No name given'}
+      ${ feature.properties.NAME || feature.properties.name || 'No name given' }
     </p>
     <p>
-      ${(0.621371 * feature.properties.length_km).toFixed(2)} Miles
+      ${ (0.621371 * feature.properties.length_km).toFixed(2) || feature.properties.Lgth_Miles } Miles
     </p>`
   )
 }
 
 export default connect(
-    state => ({
-        center: state.map.center,
-        zoom: state.map.zoom,
-        GeoJSON: state.map.geojson
-    }),
-    dispatch => ({
-        actions: {
-            getGeoJSON: bindActionCreators(getGeoJSON, dispatch)
-        }
-    })
+  state => ({
+    center: state.map.center,
+    zoom: state.map.zoom,
+    GeoJSON: state.map.geojson
+  }),
+  dispatch => ({
+    actions: {
+      getGeoJSON: bindActionCreators(getGeoJSON, dispatch)
+    }
+  })
 )(map)
