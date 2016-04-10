@@ -31,7 +31,7 @@ router.route('/') // this is /api/trails
         trails => {
           res.status(200).json(trails)
         },
-        err => res.status(500).json({'error': 'Internal Server Error', err })
+        err => res.status(500).json({'error': 'Internal Server Error', message: err.message })
        )
     })
 router.route('/:id') // this is /api/trails/:id

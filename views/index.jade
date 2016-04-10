@@ -10,7 +10,7 @@ html(lang='en')
     link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='/css/leaflet.css')
     link(rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic")
-    // CSS Reset 
+    // CSS Reset
     link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css")
     link(rel='stylesheet', href='/css/milligram.min.css')
     link(rel='stylesheet', href='/css/style.css')
@@ -25,30 +25,11 @@ html(lang='en')
           |  Settings
         ul.map__options--settings
           li Trail Color: Green
-          li.map__options--distance Distance: 
+          li.map__options--distance Distance:
             input(id="measurementTypeKm", type="radio", value='km' name='measurementType')
             label(class="label-inline", for="measurementTypeKm") Km
             input(id="measurementTypeM", type="radio", value='miles' name='measurementType')
             label(class="label-inline", for="measurementTypeM") Miles
-      .trail__List
-        h2.header Current Trails
-        // mocked
-        - var n = 0
-        while n < 10
-          - n += 1
-          .trail__item
-            //.trail__item--figure
-            //  i.fa.fa-camera
-            .trail__item--body
-              .trail__item--header
-                h4 Pipeline
-              ul.trail__item--details            
-                li 
-                  span distance:
-                  |  5 miles
-                li 
-                  span elevation:
-                  |  9,000 ft.
-              
+
     script(type='text/javascript', src='/js/app.js')
-    
+
