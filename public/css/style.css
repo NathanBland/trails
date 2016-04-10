@@ -32,11 +32,11 @@
 
 #map {
   width: 100%;
-  height: 90vh; }
+  height: 89vh; }
 
 #root {
   width: 100%;
-  height: 89vh;
+  height: 90vh;
   display: block;
   margin: .5em;
   margin-top: 0;
@@ -54,8 +54,7 @@
   border-bottom: 1px dashed white;
   display: flex;
   align-items: flex-start;
-  box-sizing: border-box;
-  margin-right: 1em; }
+  box-sizing: border-box; }
 
 .trail__item--header {
   flex: 1;

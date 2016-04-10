@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import React from 'react'
-import mapActions from '../actions/map'
+import { getGeoJSON } from '../actions/map'
 import { bindActionCreators } from 'redux'
 
 //Create Map
@@ -19,10 +19,10 @@ const map = ({
 }) => (
     <Map
         id="map"
-        center={center} 
+        center={center}
         zoom={zoom}
-        onLeafletMoveend={(ev) => actions.map.getGeoJSON(ev)}
-        onLeafletResize={(ev) => actions.map.getGeoJSON(ev)}
+        onLeafletMoveend={(ev) => actions.getGeoJSON(ev)}
+        onLeafletResize={(ev) => actions.getGeoJSON(ev)}
     >
         <TileLayer
             url='https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'
@@ -44,7 +44,7 @@ const map = ({
                             </p>`
                         )
                     }}
-                /> 
+                />
             ))
         }
     </Map>
@@ -54,13 +54,13 @@ const map = ({
 
 export default connect(
     state => ({
-        center: state.map.center, 
-        zoom: state.map.zoom, 
+        center: state.map.center,
+        zoom: state.map.zoom,
         GeoJSON: state.map.geojson
     }),
     dispatch => ({
         actions: {
-            map: bindActionCreators(mapActions, dispatch)
+            getGeoJSON: bindActionCreators(getGeoJSON, dispatch)
         }
     })
 )(map)
