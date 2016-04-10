@@ -41,7 +41,7 @@ const map = ({
                                 ${feature.properties.NAME || 'No name given'}
                             </p>
                             <p>
-                                ${feature.properties.length_km} KM
+                                ${(0.621371 * feature.properties.length_km).toFixed(2)} Miles
                             </p>`
                         )
                     }}
