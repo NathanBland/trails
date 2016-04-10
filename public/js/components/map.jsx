@@ -23,7 +23,6 @@ const map = ({
         zoom={zoom}
         onLeafletMoveend={(ev) => actions.map.getGeoJSON(ev)}
         onLeafletResize={(ev) => actions.map.getGeoJSON(ev)}
-        onLeafletLoad={(ev) => actions.map.getGeoJSON(ev)}
     >
         <TileLayer
             url='https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'
