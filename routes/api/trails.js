@@ -11,7 +11,6 @@ router.route('/') // this is /api/trails
       var query = {}
       if (req.query.center) {
         var pointArray = JSON.parse(req.query.center)
-        console.log('query:', pointArray)
         query = {
           geometry: {
             $near: {
@@ -30,7 +29,6 @@ router.route('/') // this is /api/trails
       .exec()
       .then(
         trails => {
-          console.log('found trails:', trails.length)
           res.status(200).json(trails)
         },
         err => res.status(500).json({'error': 'Internal Server Error', err })

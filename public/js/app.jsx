@@ -13,7 +13,7 @@ const store = createStore(
   { map: options },
   middleware
 )
-
+store.dispatch({ type: 'GET_GEOJSON' }) //get Initial GeoJSON
 ReactDOM.render(
   <App store={store} />,
   document.getElementById('root')
