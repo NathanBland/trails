@@ -29,8 +29,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "browserify public/js/map.jsx -g babelify -g uglifyify --extension=jsx -o .build/js/app.js; node server.js",
-    "dev": "browserify -d public/js/app.jsx -g babelify --extension=jsx -o .build/js/app.js; node server.js"
+    "start": "browserify client/app.jsx -g babelify -g uglifyify --extension=jsx -o .build/js/app.js; node server.js",
+    "dev": "browserify -d client/app.jsx -g babelify --extension=jsx -o .build/js/app.js; node server.js"
   },
   "repository": {
     "type": "git",
