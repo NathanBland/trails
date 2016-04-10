@@ -18,12 +18,12 @@ export function getDefaults() {
 
   return Object.assign({
     center: [39.5501, -105.7821],
-      zoom: 10,
-      geojson: {
-        loading: false,
-        data: []
-      }
-    },
-    stashed
+    zoom: 10,
+    geojson: {
+      loading: false,
+      data: []
+    }
+  },
+  stashed
   )
 }
