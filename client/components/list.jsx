@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { list as listActions } from '../actions/map'
+import { list as listActions } from '../actions'
 const list = ({
   trails,
   actions
