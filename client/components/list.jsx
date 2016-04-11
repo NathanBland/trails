@@ -3,18 +3,19 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import actions from '../actions'
 const loader = (props, context) => (<span className='trail__List--loading fadeIn'>
-  <h2 className='header'><i className='fa fa-spinner fa-spin'></i> Loading trails...</h2></span>)
+  <i className='fa fa-spinner fa-spin'></i> Loading trails...</span>)
 
 const list = ({
   trails,
   loading,
   actions
 }) => (
-    loading
-    ? loader()
-    : (
     <div className="trail__List fadeIn">
-      <h2 className="header">Current Trails</h2>
+      <h2 className="header">
+      loading
+        ? loader()
+        : ('Current Trails')  
+      </h2>
       {trails.map(trail => (
         <div key={trail._id} 
           className="trail__item"
@@ -43,7 +44,6 @@ const list = ({
         </div>
       ))}
     </div>
-    )
   )
 
 export default connect(state => ({
