@@ -32,8 +32,9 @@
   margin-left: .5em; }
 
 #map {
-  flex: 0 1 73%;
-  height: 89vh; }
+  flex: 1;
+  height: 89vh;
+  box-shadow: 1px 1px 5px grey; }
 
 #root {
   display: flex;
