@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import action from '../actions/map'
+import { getGeoJSON } from '../actions/map'
 const list = ({
   trails,
   actions
@@ -43,5 +43,5 @@ export default connect(state => ({
   .map(layer => Object.assign({}, layer.properties, { _id: layer._id })) //Mutation is bad M'kay
 }),
 dispatch => ({
-  actions: bindActionCreators(action, dispatch)
+  actions: bindActionCreators(getGeoJSON, dispatch)
 }))(list)
