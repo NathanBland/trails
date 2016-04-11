@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { list } from '../actions/map'
+import actions from '../actions'
 const list = ({
   trails,
   actions
@@ -45,6 +45,6 @@ export default connect(state => ({
 }),
 dispatch => ({
   actions: {
-    list: bindActionCreators(list, dispatch)
+    list: bindActionCreators(actions.list, dispatch)
   }
 }))(list)

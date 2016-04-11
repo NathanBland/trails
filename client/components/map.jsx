@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Map, TileLayer, GeoJson, PopUp } from 'react-leaflet'
 
-import { map as mapAction } from '../actions'
+import actions from '../actions'
 import { getDefaults } from '../utils'
 
 const myStyle = {
@@ -59,7 +59,7 @@ export default connect(
   }),
   dispatch => ({
     actions: {
-      map: bindActionCreators(mapAction, dispatch)
+      map: bindActionCreators(actions.map, dispatch)
     }
   })
 )(map)
