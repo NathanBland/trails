@@ -6,12 +6,11 @@ const list = ({
 }) => (
     <div className="trail__List">
       <h2 className="header">Current Trails</h2>
-      <div className="trail__item">
-        {trails.map((trail, idx) => (
-          <div
-            key={idx}
-            className="trail__item--body"
+      {trails.map((trail, idx) => (
+        <div key={idx} 
+          className="trail__item"
           >
+          <div className="trail__item--body">
             <div className="trail__item--header">
               <h4>{trail.name || trail.NAME || 'Unnamed'}</h4>
             </div>
@@ -31,8 +30,8 @@ const list = ({
               */}
             </ul>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   )
 
