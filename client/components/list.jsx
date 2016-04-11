@@ -12,7 +12,7 @@ const list = ({
           >
           <div className="trail__item--body">
             <div className="trail__item--header">
-              <h4>{trail.name || trail.NAME || 'Unnamed'}</h4>
+              <h4>{trail.name || trail.NAME || 'No Name'}</h4>
             </div>
             <ul className="trail__item--details">
               <li>
