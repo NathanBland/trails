@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Map, TileLayer, GeoJson, PopUp } from 'react-leaflet'
 
-import { getGeoJSON } from '../actions/map'
+import { map as mapAction } from '../actions'
 import { getDefaults } from '../utils'
 
 const myStyle = {
@@ -22,8 +22,8 @@ const map = ({
     id="map"
     center={defs.center}
     zoom={zoom}
-    onLeafletMoveend={(ev) => actions.getGeoJSON(ev)}
-    onLeafletResize={(ev) => actions.getGeoJSON(ev)}
+    onLeafletMoveend={(ev) => actions.map.getGeoJSON(ev)}
+    onLeafletResize={(ev) => actions.map.getGeoJSON(ev)}
   >
     <TileLayer
       url='https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'
@@ -59,7 +59,7 @@ export default connect(
   }),
   dispatch => ({
     actions: {
-      getGeoJSON: bindActionCreators(getGeoJSON, dispatch)
+      map: bindActionCreators(mapAction, dispatch)
     }
   })
 )(map)

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getGeoJSON } from '../actions/map'
+import { list } from '../actions/map'
 const list = ({
   trails,
   actions
@@ -11,7 +11,7 @@ const list = ({
       {trails.map(trail => (
         <div key={trail._id} 
           className="trail__item"
-          onClick={actions.highlight.bind(this, trail._id)}
+          onClick={actions.list.highlight.bind(this, trail._id)}
           >
           <div className="trail__item--body">
             <div className="trail__item--header">
@@ -44,5 +44,7 @@ export default connect(state => ({
   .map(layer => Object.assign({}, layer.properties, { _id: layer._id })) //Mutation is bad M'kay
 }),
 dispatch => ({
-  actions: bindActionCreators(getGeoJSON, dispatch)
+  actions: {
+    list: bindActionCreators(list, dispatch)
+  }
 }))(list)

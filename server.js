@@ -3,7 +3,8 @@ var app = express()                 // define our app using express
 var bodyParser = require('body-parser'),
   routes = require('./routes/api'),
   mongoose = require('mongoose'),
-  sass = require('node-sass-middleware')
+  sass = require('node-sass-middleware'),
+  compression = require('compression')
 
 var config = {
   db: {
@@ -12,7 +13,7 @@ var config = {
     name: process.env.dbName
   }
 }
-
+app.use(compression())
 app.use(
   sass({
     root: __dirname,
