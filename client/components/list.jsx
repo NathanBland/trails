@@ -21,7 +21,7 @@ const list = ({
                 <span>
                   distance:
                 </span>
-                {trail.Lgth_Miles.toFixed(2) || (0.621371 * trail.length_km).toFixed(2)} Miles
+                { Number(trail.Lgth_Miles).toFixed(2) || (0.621371 * trail.length_km).toFixed(2) || 'Uknown'} Miles
               </li>
               {/*
                 <li>

@@ -46,7 +46,7 @@ function eachFeature(feature, layer){
       ${ feature.properties.NAME || feature.properties.name || 'No name given' }
     </p>
     <p>
-      ${ feature.properties.Lgth_Miles || (0.621371 * feature.properties.length_km).toFixed(2) } Miles
+      ${ Number(feature.properties.Lgth_Miles).toFixed(2) || (0.621371 * feature.properties.length_km).toFixed(2) || 'Unknown' } Miles
     </p>`
   )
 }
