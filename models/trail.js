@@ -7,18 +7,18 @@ const Trail = new Schema({
   geometry: {
     'type': {
       type: String,
-      default: "MultiLineString"
+      default: 'MultiLineString'
     },
     coordinates: Schema.Types.Mixed
   },
   properties: {
-    "SOURCE_D00": String,
-    "SOURCE_ORI": String,
-    "NAME": String,
-    "FTYPE": String,
-    "FCODE": String,
-    "length_km": Number
+    'SOURCE_D00': String,
+    'SOURCE_ORI': String,
+    'NAME': String,
+    'FTYPE': String,
+    'FCODE': String,
+    'length_km': Number
   }
-}, {collection: 'trails'})
+}, {collection: 'newTrails'})
 
 module.exports = mongoose.model('trail', Trail)
