@@ -23,7 +23,7 @@ router.route('/') // this is /api/trails
         }
       }
       Trail.find(query)
-      .limit(100)
+      .limit(50)
       .sort('')
       .lean()
       .exec()
