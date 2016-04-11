@@ -51,8 +51,7 @@
   border-bottom: 1px dashed white;
   display: flex;
   align-items: flex-start;
-  box-sizing: border-box;
-  margin-right: 1em; }
+  box-sizing: border-box; }
 
 .trail__item--header {
   flex: 1;
