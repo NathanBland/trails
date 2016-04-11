@@ -19,7 +19,7 @@ const list = ({
                 <span>
                   distance:
                 </span>
-                {trail.Lgth_Miles || (0.621371 * trail.length_km).toFixed(2)} Miles
+                {trail.Lgth_Miles.toFixed(2) || (0.621371 * trail.length_km).toFixed(2)} Miles
               </li>
               {/*
                 <li>
