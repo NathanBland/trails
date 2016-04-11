@@ -17,3 +17,21 @@ ReactDOM.render(
   <App store={store} />,
   document.querySelector('.grid')
 )
+initializeGeoJSON()
+
+function initializeGeoJSON(){
+  store.dispatch({
+    type:'GET_GEOJSON'
+  })
+  
+  fetch('/api/trails?center=' + JSON.stringify(options.center.reverse()))
+    .then(function(res) {
+      return res.json()
+    })
+    .then(function(newJSON) {
+      store.dispatch({
+        type: 'SET_GEOJSON',
+        payload: newJSON
+      })
+    })
+}
