@@ -2,7 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import actions from '../actions'
-const loader = (props, context) => (<i class='fa fa-spin fa-animated'><p> Loading closest trails...</p></i>)
+const loader = (props, context) => (<span className='trail__List--loading'>
+  <h2 className='header'><i className='fa fa-spinner fa-spin'></i> Loading trails...</h2></span>)
 
 const list = ({
   trails,
