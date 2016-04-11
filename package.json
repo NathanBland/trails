@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "a web utility designed to make finding trails easy",
   "main": "server.js",
-  "cacheDirectories": ["node_modules", ".build"],
   "dependencies": {
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
