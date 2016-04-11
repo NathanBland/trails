@@ -12,9 +12,10 @@ const list = ({
 }) => (
     <div className="trail__List fadeIn">
       <h2 className="header">
-      loading
+      {loading
         ? loader()
-        : ('Current Trails')  
+        : ('Current Trails')
+      }  
       </h2>
       {trails.map(trail => (
         <div key={trail._id} 
