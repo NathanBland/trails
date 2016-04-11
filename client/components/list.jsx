@@ -1,14 +1,16 @@
 import { connect } from 'react-redux'
-import React from 'react'
-
+import { bindActionCreators } from 'redux'
+import action from '../actions/map'
 const list = ({
-  trails
+  trails,
+  actions
 }) => (
     <div className="trail__List">
       <h2 className="header">Current Trails</h2>
-      {trails.map((trail, idx) => (
-        <div key={idx} 
+      {trails.map(trail => (
+        <div key={trail._id} 
           className="trail__item"
+          onClick={actions.highlight.bind(this, trail._id)}
           >
           <div className="trail__item--body">
             <div className="trail__item--header">
@@ -36,5 +38,10 @@ const list = ({
   )
 
 export default connect(state => ({
-  trails: state.map.geojson.data.map(layer => layer.properties)
+  trails: state.map.geojson.data
+  .filter(layer => layer.properties.name || layer.properties.NAME)
+  .map(layer => Object.assign({}, layer.properties, { _id: layer._id })) //Mutation is bad M'kay
+}),
+dispatch => ({
+  actions: bindActionCreators(action, dispatch)
 }))(list)
