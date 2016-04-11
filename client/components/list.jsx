@@ -10,7 +10,7 @@ const list = ({
   actions
 }) => (
     loading
-    ? {loader()}
+    ? loader()
     : (
     <div className="trail__List">
       <h2 className="header">Current Trails</h2>
