@@ -52,6 +52,10 @@
   overflow-y: auto;
   animation-duration: 1s; }
 
+.trail__List--loading {
+  margin-left: 1em;
+  margin-right: 1em; }
+
 .trail__item {
   background-color: #1e5f1e;
   color: white;
