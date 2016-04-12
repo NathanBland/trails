@@ -4,14 +4,14 @@ const toolTip = ({
   trailName,
   trailLength
 }) => (
-  <PopUp className='trail__tooltip'>
+  <span className='trail__tooltip'>
     <h2>
       { trailName || 'No name given' }
     </h2>
     <p>
       { trailLength || 'Unknown' } Miles
     </p>
-  </PopUp>
+  </span>
 )
 
 
