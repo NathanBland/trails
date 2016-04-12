@@ -35,6 +35,7 @@ const map = ({
         key={feature._id}
         data={feature}
         style={myStyle}
+        eachFeature={eachFeature}
         >
         <tooltip name={feature.properties.NAME || feature.properties.name}
               length={Number(feature.properties.Lgth_Miles).toFixed(2) || (0.621371 * feature.properties.length_km).toFixed(2)} 
@@ -45,9 +46,10 @@ const map = ({
 )
 
 function eachFeature(feature, layer){
-  layer.bindPopup(
-    
-  )
+  layer.bindPopup(`
+   <h4>${feature.properties.NAME || feature.properties.name}</h4>
+   <p>${Number(feature.properties.Lgth_Miles).toFixed(2) || (0.621371 * feature.properties.length_km).toFixed(2)}</p> 
+  `)
 }
 
 export default connect(
