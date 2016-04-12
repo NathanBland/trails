@@ -43,7 +43,11 @@ const map = ({
 
 function eachFeature(feature, layer){
   layer.bindPopup(`
-    <h4 className='trail__name'>${feature.properties.NAME || feature.properties.name}
+    <h4 className='trail__name'>${
+      (feature.properties.NAME || feature.properties.name)
+      ? 'No name found'
+      : (feature.properties.NAME || feature.properties.name)
+    }
     </h4>
     <p className='trail__desc'>
     ${ isNaN(Number(feature.properties.Lgth_Miles).toFixed(2) || (0.621371 * feature.properties.length_km).toFixed(2))
