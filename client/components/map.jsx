@@ -35,7 +35,7 @@ const map = ({
         key={feature._id}
         data={feature}
         style={myStyle}
-        eachFeature={eachFeature}
+        onEachFeature={eachFeature}
         />
     )) }
   </Map>
