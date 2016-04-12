@@ -43,9 +43,11 @@ const map = ({
 
 function eachFeature(feature, layer){
   layer.bindPopup(`
-    <tooltip trailName='${feature.properties.NAME || feature.properties.name}'
-    trailLength='${Number(feature.properties.Lgth_Miles).toFixed(2) || (0.621371 * feature.properties.length_km).toFixed(2)}'
-    />
+    <h4 className='trail__name'>${feature.properties.NAME || feature.properties.name}
+    </h4>
+    <p className='trail__desc'>
+    ${Number(feature.properties.Lgth_Miles).toFixed(2) || (0.621371 * feature.properties.length_km).toFixed(2)}
+    p/>
   `)
 }
 
