@@ -31,6 +31,6 @@ const EsriTrail = new Schema({
     PERMANENT_IDENTIFIER: String,
     WIDTH: Number
   }
-}, {collection: 'ESRI_trials'})
+}, {collection: 'ESRI_trails'})
 
 module.exports = mongoose.model('esri-trail', EsriTrail)
