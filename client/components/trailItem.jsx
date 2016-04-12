@@ -22,7 +22,7 @@ const trailItem = ({
             : Number(trail.Lgth_Miles).toFixed(2) || (0.621371 * trail.length_km).toFixed(2) } Miles
             </li>
         </ul>
-        <button className='button'>Enable Offline</button>
+        <button className='button'><i class="fa fa-download" aria-hidden="true"></i> Enable Offline </button>
         </div>
     </div>
 )        
