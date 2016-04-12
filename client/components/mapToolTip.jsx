@@ -1,6 +1,6 @@
 import React from 'react'
 import { PopUp } from 'react-leaflet'
-const toolTip = ({
+const tooltip = ({
   trailName,
   trailLength
 }) => (
@@ -15,4 +15,4 @@ const toolTip = ({
 )
 
 
-export default toolTip
+export default tooltip
