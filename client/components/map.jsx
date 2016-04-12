@@ -45,8 +45,8 @@ function eachFeature(feature, layer){
   layer.bindPopup(`
     <h4 className='trail__name'>${
       (feature.properties.NAME || feature.properties.name)
-      ? 'No name found'
-      : (feature.properties.NAME || feature.properties.name)
+      ? (feature.properties.NAME || feature.properties.name)
+      : 'No name found'
     }
     </h4>
     <p className='trail__desc'>
