@@ -50,7 +50,8 @@
   background-color: white;
   max-height: 89vh;
   overflow-y: auto;
-  animation-duration: 1s; }
+  animation-duration: 1s;
+  margin-left: .1em; }
 
 .trail__List--loading {
   margin-left: 1em;
