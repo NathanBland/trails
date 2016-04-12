@@ -4,7 +4,7 @@ import actions from '../actions'
 const trailItem = ({
     trail
 }) => (
-    <div key={trail._id} 
+    <div
         className="trail__item"
         // onClick={actions.list.highlight.bind(this, trail._id)}
         >

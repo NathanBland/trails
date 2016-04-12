@@ -18,7 +18,7 @@ const list = ({
       }  
       </h2>
       {trails.map(trail => (
-        <trailItem trail={trail}/>
+        <trailItem key={trail._id} trail={trail} />
       ))}
     </div>
   )
