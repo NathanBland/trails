@@ -46,8 +46,10 @@ function eachFeature(feature, layer){
     <h4 className='trail__name'>${feature.properties.NAME || feature.properties.name}
     </h4>
     <p className='trail__desc'>
-    ${Number(feature.properties.Lgth_Miles).toFixed(2) || (0.621371 * feature.properties.length_km).toFixed(2)}
-    p/>
+    ${ isNaN(Number(feature.properties.Lgth_Miles).toFixed(2) || (0.621371 * feature.properties.length_km).toFixed(2))
+      ? 'Unkown distance'
+    : Number(feature.properties.Lgth_Miles).toFixed(2) || (0.621371 * feature.properties.length_km).toFixed(2)}
+    <p/>
   `)
 }
 
