@@ -30,7 +30,7 @@ const list = ({
                 <span>
                   distance: 
                 </span>
-                { isNan(Number(trail.Lgth_Miles).toFixed(2) || (0.621371 * trail.length_km).toFixed(2))
+                { isNaN(Number(trail.Lgth_Miles).toFixed(2) || (0.621371 * trail.length_km).toFixed(2))
                   ? 'Unknown'
                 : Number(trail.Lgth_Miles).toFixed(2) || (0.621371 * trail.length_km).toFixed(2) } Miles
               </li>
