@@ -1,15 +1,15 @@
 import React from 'react'
 import { PopUp } from 'react-leaflet'
 const toolTip = ({
-  name,
-  length
+  trailName,
+  trailLength
 }) => (
   <PopUp className='trail__tooltip'>
+    <h2>
+      { trailName || 'No name given' }
+    </h2>
     <p>
-      { name || 'No name given' }
-    </p>
-    <p>
-      { length || 'Unknown' } Miles
+      { trailLength || 'Unknown' } Miles
     </p>
   </PopUp>
 )
