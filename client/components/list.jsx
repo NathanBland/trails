@@ -27,7 +27,7 @@ const list = ({
             </div>
             <ul className="trail__item--details">
               <li>
-                <span>
+                <span> {console.log(trail)}
                   distance: 
                 </span>
                 { isNaN(Number(trail.properties.LENGTH) || Number(trail.Lgth_Miles) || (0.621371 * trail.length_km))
