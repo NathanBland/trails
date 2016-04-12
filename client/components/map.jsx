@@ -35,15 +35,18 @@ const map = ({
         key={feature._id}
         data={feature}
         style={myStyle}
-        onEachFeature={eachFeature}
-      />
+        >
+        <tooltip name={feature.properties.NAME || feature.properties.name}
+              length={Number(feature.properties.Lgth_Miles).toFixed(2) || (0.621371 * feature.properties.length_km).toFixed(2)} 
+            />
+      </GeoJson>
     )) }
   </Map>
 )
 
 function eachFeature(feature, layer){
-  layer.bindPopup(tooltip(feature.properties.NAME || feature.properties.name(),
-    Number(feature.properties.Lgth_Miles).toFixed(2) || (0.621371 * feature.properties.length_km).toFixed(2))
+  layer.bindPopup(
+    
   )
 }
 

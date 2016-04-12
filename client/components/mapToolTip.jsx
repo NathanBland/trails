@@ -1,33 +1,18 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-
-import actions from '../actions'
-import { getDefaults } from '../utils'
-
+import { PopUp } from 'react-leaflet'
 const toolTip = ({
   name,
   length
 }) => (
-  <span className='trail__tooltip'>
+  <PopUp className='trail__tooltip'>
     <p>
       { name || 'No name given' }
     </p>
     <p>
       { length || 'Unknown' } Miles
     </p>
-  </span>
+  </PopUp>
 )
 
 
-export default connect(
-  state => ({
-    name: '',
-    length: ''
-  }),
-  dispatch => ({
-    actions: {
-      map: bindActionCreators(actions.toolTip, dispatch)
-    }
-  })
-)(toolTip)
+export default toolTip
