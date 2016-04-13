@@ -44,12 +44,14 @@ const map = ({
 function eachFeature(feature, layer){
   const trail = feature.properties
   layer.bindPopup(
-    <Tooltip trailName='${(trail.NAME || trail.name)}'
-      trailLength={ isNaN(Number(feature.properties.Lgth_Miles).toFixed(2)
-        || (0.621371 * feature.properties.length_km).toFixed(2))
-      ? 'Unkown'
-    : Number(trail.Lgth_Miles).toFixed(2) || (0.621371 * trail.length_km).toFixed(2) }
-    />
+    <PopUp>
+      <Tooltip trailName='${(trail.NAME || trail.name)}'
+        trailLength={ isNaN(Number(feature.properties.Lgth_Miles).toFixed(2)
+          || (0.621371 * feature.properties.length_km).toFixed(2))
+        ? 'Unkown'
+      : Number(trail.Lgth_Miles).toFixed(2) || (0.621371 * trail.length_km).toFixed(2) }
+      />
+    </PopUp>
   )
 }
 
