@@ -36,12 +36,7 @@ const map = ({
         data={feature}
         style={myStyle}
       >
-          <Tooltip trailName={(feature.properties.NAME || feature.properties.name)}
-            trailLength={ isNaN(Number(feature.properties.Lgth_Miles).toFixed(2)
-              || (0.621371 * feature.properties.length_km).toFixed(2))
-            ? 'Unkown'
-          : Number(feature.properties.Lgth_Miles).toFixed(2) || (0.621371 * feature.properties.length_km).toFixed(2) }
-          />
+        <Tooltip trailName={(feature.properties.NAME || feature.properties.name)}/>
       </GeoJson>
     )) }
   </Map>
