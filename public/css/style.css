@@ -15,9 +15,10 @@
 .map__options {
   position: absolute;
   z-index: 10;
-  margin-left: 4.5rem;
+  margin-left: 4rem;
   padding: 1rem;
-  margin-top: -4.85rem; }
+  margin-top: -4.85rem;
+  left: 0; }
 
 .map__options--settings {
   background-color: white;

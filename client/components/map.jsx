@@ -1,7 +1,7 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Map, TileLayer, GeoJson, PopUp } from 'react-leaflet'
+import { Map, TileLayer, GeoJson, Popup } from 'react-leaflet'
 
 import actions from '../actions'
 import { getDefaults } from '../utils'
@@ -35,16 +35,16 @@ const map = ({
         key={feature._id}
         data={feature}
         style={myStyle}
-        >
-        <PopUp>
-      <Tooltip trailName='${(trail.NAME || trail.name)}'
-        trailLength={ isNaN(Number(feature.properties.Lgth_Miles).toFixed(2)
-          || (0.621371 * feature.properties.length_km).toFixed(2))
-        ? 'Unkown'
-      : Number(feature.properties.Lgth_Miles).toFixed(2) || (0.621371 * feature.properties.length_km).toFixed(2) }
-      />
-    </PopUp>
-    </GeoJson>
+      >
+        <Popup>
+          <Tooltip trailName={(feature.properties.NAME || feature.properties.name)}
+            trailLength={ isNaN(Number(feature.properties.Lgth_Miles).toFixed(2)
+              || (0.621371 * feature.properties.length_km).toFixed(2))
+            ? 'Unkown'
+          : Number(feature.properties.Lgth_Miles).toFixed(2) || (0.621371 * feature.properties.length_km).toFixed(2) }
+          />
+        </Popup>
+      </GeoJson>
     )) }
   </Map>
 )
@@ -52,14 +52,7 @@ const map = ({
 function eachFeature(feature, layer){
   const trail = feature.properties
   layer.bindPopup(
-    <PopUp>
-      <Tooltip trailName='${(trail.NAME || trail.name)}'
-        trailLength={ isNaN(Number(feature.properties.Lgth_Miles).toFixed(2)
-          || (0.621371 * feature.properties.length_km).toFixed(2))
-        ? 'Unkown'
-      : Number(trail.Lgth_Miles).toFixed(2) || (0.621371 * trail.length_km).toFixed(2) }
-      />
-    </PopUp>
+
   )
 }
 
