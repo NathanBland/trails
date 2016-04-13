@@ -35,14 +35,13 @@ const map = ({
         key={feature._id}
         data={feature}
         style={myStyle}
-        //onEachFeature={eachFeature}
         >
         <PopUp>
       <Tooltip trailName='${(trail.NAME || trail.name)}'
         trailLength={ isNaN(Number(feature.properties.Lgth_Miles).toFixed(2)
           || (0.621371 * feature.properties.length_km).toFixed(2))
         ? 'Unkown'
-      : Number(trail.Lgth_Miles).toFixed(2) || (0.621371 * trail.length_km).toFixed(2) }
+      : Number(feature.properties.Lgth_Miles).toFixed(2) || (0.621371 * feature.properties.length_km).toFixed(2) }
       />
     </PopUp>
     </GeoJson>
