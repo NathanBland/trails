@@ -21,7 +21,7 @@ export function getGeoJSON(ev) {
       type:'GET_GEOJSON'
     })
     
-    fetch('/api/trails?center=' + JSON.stringify([center.lng, center.lat]))
+    fetch('/api/trails?box='+JSON.stringify(map.getBounds())+'&center=' + JSON.stringify([center.lng, center.lat]))
       .then(function(res) {
         return res.json()
       })

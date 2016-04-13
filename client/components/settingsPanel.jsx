@@ -4,7 +4,7 @@ const settingsPanel = ({
 }) => (
   <div className='map__options'>
     <button className='button-clear map__options--toggle'>
-        <i className='fa fa-gear'></i>
+        <i className='fa fa-gear'> </i>
         Settings
     </button>
     <ul className='map__options--settings'>
