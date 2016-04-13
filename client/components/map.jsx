@@ -42,6 +42,7 @@ const map = ({
 )
 
 function eachFeature(feature, layer){
+  const trail = feature.properties
   layer.bindPopup(`
     <h4 className='trail__name'>${
       (feature.properties.NAME || feature.properties.name)
@@ -50,7 +51,7 @@ function eachFeature(feature, layer){
     }
     </h4>
     <p className='trail__desc'>
-    ${ isNaN(Number(feature.properties.Lgth_Miles).toFixed(2) 
+    ${ isNaN(Number(feature.properties.Lgth_Miles).toFixed(2)
         || (0.621371 * feature.properties.length_km).toFixed(2))
       ? 'Unkown'
     : Number(trail.Lgth_Miles).toFixed(2) || (0.621371 * trail.length_km).toFixed(2) } Miles

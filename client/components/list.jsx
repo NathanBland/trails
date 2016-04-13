@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import actions from '../actions'
-import trailItem from './trailItem'
-const loader = (props, context) => (<h2 className='trail__List--loading animated infinite pulse'>Loading trails...</h2>)
+import TrailItem from './trailItem'
+const Loader = (props) => (<h2 className='trail__List--loading animated infinite pulse'>Loading trails...</h2>)
 
 const list = ({
   trails,
@@ -13,12 +13,12 @@ const list = ({
     <div className="trail__List fadeIn">
       <h2 className="header">
       {loading
-        ? loader()
+        ? (<Loader />)
         : ('Current Trails')
-      }  
+      }
       </h2>
       {trails.map(trail => (
-        <trailItem key={trail._id} trail={trail} />
+        <TrailItem key={trail._id} trail={trail} />
       ))}
     </div>
   )
