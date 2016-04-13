@@ -5,7 +5,7 @@ import { Map, TileLayer, GeoJson, PopUp } from 'react-leaflet'
 
 import actions from '../actions'
 import { getDefaults } from '../utils'
-import tooltip from './mapToolTip'
+import Tooltip from './mapToolTip'
 
 const myStyle = {
   color: '#006400',
@@ -44,18 +44,12 @@ const map = ({
 function eachFeature(feature, layer){
   const trail = feature.properties
   layer.bindPopup(`
-    <h4 className='trail__name'>${
-      (feature.properties.NAME || feature.properties.name)
-      ? (feature.properties.NAME || feature.properties.name)
-      : 'No name found'
-    }
-    </h4>
-    <p className='trail__desc'>
-    ${ isNaN(Number(feature.properties.Lgth_Miles).toFixed(2)
+    <Tooltip trailName='${(trail.NAME || trail.name)}'
+      trailLength=${ isNaN(Number(feature.properties.Lgth_Miles).toFixed(2)
         || (0.621371 * feature.properties.length_km).toFixed(2))
       ? 'Unkown'
-    : Number(trail.Lgth_Miles).toFixed(2) || (0.621371 * trail.length_km).toFixed(2) } Miles
-    <p/>
+    : Number(trail.Lgth_Miles).toFixed(2) || (0.621371 * trail.length_km).toFixed(2) }
+    />
   `)
 }
 
