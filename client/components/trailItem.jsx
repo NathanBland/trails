@@ -2,7 +2,8 @@ import React from 'react'
 import actions from '../actions'
 
 const trailItem = ({
-    trail
+    trail,
+    distance
 }) => (
     <div
         className="trail__item"
@@ -17,9 +18,7 @@ const trailItem = ({
                 <span>
                     distance: 
                 </span>
-                { isNaN(Number(trail.Lgth_Miles) || (0.621371 * trail.length_km))
-                ? 'Unknown'
-                : Number(trail.Lgth_Miles).toFixed(2) || (0.621371 * trail.length_km).toFixed(2) } Miles
+                { distance } Miles
                 </li>
             </ul>
             <div className='trail__item--actions'>

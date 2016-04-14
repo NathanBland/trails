@@ -8,7 +8,8 @@ const Loader = (props) => (<h2 className='trail__List--loading animated infinite
 const list = ({
   trails,
   loading,
-  actions
+  actions,
+  distances
 }) => (
     <div className="trail__List fadeIn">
       <h2 className="header">
@@ -18,7 +19,7 @@ const list = ({
       }
       </h2>
       {trails.map(trail => (
-        <TrailItem key={trail._id} trail={trail} />
+        <TrailItem key={trail._id} trail={trail} distance={distances[trail._id]}/>
       ))}
     </div>
   )
@@ -27,7 +28,8 @@ export default connect(state => ({
   trails: state.map.geojson.data
   .filter(layer => layer.properties.name || layer.properties.NAME)
   .map(layer => Object.assign({}, layer.properties, { _id: layer._id })), //Mutation is bad M'kay
-  loading: state.map.geojson.loading
+  loading: state.map.geojson.loading,
+  distances: state.distances
 }),
 dispatch => ({
   actions: {

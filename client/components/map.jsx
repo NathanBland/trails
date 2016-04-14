@@ -36,11 +36,17 @@ const map = ({
         data={feature}
         style={myStyle}
       >
-        <Tooltip trailName={(feature.properties.NAME || feature.properties.name)}/>
+        <Tooltip distance={actions.distance} trailName={(feature.properties.NAME || feature.properties.name)}/>
       </GeoJson>
     )) }
   </Map>
 )
+
+function getLocation() {
+  if (navigator) {
+    navigator.geolocation.getCurrentPosition(successFunc, failFunc)
+  }
+}
 
 function eachFeature(feature, layer){
   const trail = feature.properties
@@ -57,7 +63,14 @@ export default connect(
   }),
   dispatch => ({
     actions: {
-      map: bindActionCreators(actions.map, dispatch)
+      map: bindActionCreators(actions.map, dispatch),
+      distance: bindActionCreators(actions.distance, dispatch) //wrap all functions in this object with the dispatch actions
+      //const bindActionCreators = (obj, dispatch) => (
+      //  Object.keys(obj).reduce((o, k) => {
+      //    o[k] = () => dispatch(o[k](arguments))//wrap all functions with dispatch
+      //    reutrn o
+      //  }, 
+      //{})
     }
   })
 )(map)

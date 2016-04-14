@@ -4,6 +4,7 @@
   "description": "a web utility designed to make finding trails easy",
   "main": "server.js",
   "dependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.6.5",
     "body-parser": "^1.15.0",
     "compression": "^1.6.1",
     "express": "^4.13.4",

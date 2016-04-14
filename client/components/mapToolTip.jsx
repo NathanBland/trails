@@ -1,21 +1,21 @@
 import React from 'react'
 import { Popup } from 'react-leaflet'
-const Tooltip = (props) => (
+const Tooltip = ({distance, trailName, ...props}) => (
   <Popup {...props}>
     <span className='trail__tooltip'>
-    <h4>
-      { props.trailName || 'No name given' }
-    </h4>
-    <p>Estimated Distance: {Number((0.000621371 * guessLength(props.popupContainer)).toFixed(2))} Miles
-    </p>
+      <h5>
+        { trailName || 'No name given' }
+      </h5>
+      <p>Estimated Distance: {guessLength(props.popupContainer, distance.addLength)} Miles
+      </p>
     </span>
   </Popup>
 )
 
-function guessLength(layer) {
+function guessLength(layer, addLength) { //get the id out of the layer?
   let tempLatLng = null
-  let coordArray = layer._layers[layer._leaflet_id-1]._latlngs
-  const distance = coordArray.reduce((totalDistance, latlng)=> {
+  const { _latlngs, feature } = layer._layers[layer._leaflet_id-1]
+  const distance = _latlngs.reduce((totalDistance, latlng)=> {
     if(tempLatLng == null){
         tempLatLng = latlng
         return totalDistance
@@ -24,8 +24,9 @@ function guessLength(layer) {
       tempLatLng = latlng
       return totalDistance
     }, 0)
-   
-    return distance
+    const convertedDistance = (0.000621371 * distance).toFixed(2)
+    addLength(feature._id, convertedDistance)
+    return convertedDistance
 }
 
 export default Tooltip

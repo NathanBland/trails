@@ -10,6 +10,11 @@ body {
 .button {
   background-color: #123812;
   border: 0.1rem solid #123812; }
+  .button:hover {
+    background-color: #123812;
+    border: 0.1rem solid #123812;
+    transition: 200ms all ease-in-out;
+    border: .1rem dashed #DBDEDB; }
 
 button.button-clear {
   color: #123812; }
