@@ -1,3 +1,4 @@
 import * as map from './map'
 import * as list from './list'
-export default { map, list }
+import * as distance from './length'
+export default { map, list, distance }

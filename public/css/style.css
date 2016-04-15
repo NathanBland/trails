@@ -1,8 +1,23 @@
+body {
+  color: #123812; }
+
 .grid {
   width: 100%;
   display: flex;
   box-sizing: border-box;
   flex-flow: row wrap; }
+
+.button {
+  background-color: #123812;
+  border: 0.1rem solid #123812; }
+  .button:hover {
+    background-color: #123812;
+    border: 0.1rem solid #123812;
+    transition: 200ms all ease-in-out;
+    border: .1rem dashed #DBDEDB; }
+
+button.button-clear {
+  color: #123812; }
 
 .header {
   text-align: center;
@@ -15,9 +30,12 @@
 .map__options {
   position: absolute;
   z-index: 10;
-  margin-left: 4.5rem;
+  margin-left: 4rem;
   padding: 1rem;
-  margin-top: -4.85rem; }
+  margin-top: -4.85rem;
+  left: 0; }
+  .map__options i {
+    margin-right: .5em; }
 
 .map__options--settings {
   background-color: white;
@@ -50,7 +68,12 @@
   background-color: white;
   max-height: 89vh;
   overflow-y: auto;
-  animation-duration: 1s; }
+  animation-duration: 1s;
+  margin-left: .1em; }
+
+.trail__List--loading {
+  margin-left: 1em;
+  margin-right: 1em; }
 
 .trail__item {
   background-color: #1e5f1e;
@@ -81,6 +104,12 @@
   list-style: none; }
   .trail__item--details li span {
     font-weight: bold; }
+
+.trail__item--actions {
+  display: flex;
+  justify-content: space-between;
+  margin-left: .5em;
+  margin-right: .5em; }
 
 /* media queries */
 @media (max-width: 800px) {

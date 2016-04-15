@@ -1,11 +1,11 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Map, TileLayer, GeoJson, PopUp } from 'react-leaflet'
+import { Map, TileLayer, GeoJson, Popup } from 'react-leaflet'
 
 import actions from '../actions'
 import { getDefaults } from '../utils'
-import tooltip from './mapToolTip'
+import Tooltip from './mapToolTip'
 
 const myStyle = {
   color: '#006400',
@@ -35,18 +35,23 @@ const map = ({
         key={feature._id}
         data={feature}
         style={myStyle}
-        >
-        <tooltip name={feature.properties.NAME || feature.properties.name}
-              length={Number(feature.properties.Lgth_Miles).toFixed(2) || (0.621371 * feature.properties.length_km).toFixed(2)} 
-            />
+      >
+        <Tooltip distance={actions.distance} trailName={(feature.properties.NAME || feature.properties.name)}/>
       </GeoJson>
     )) }
   </Map>
 )
 
+function getLocation() {
+  if (navigator) {
+    navigator.geolocation.getCurrentPosition(successFunc, failFunc)
+  }
+}
+
 function eachFeature(feature, layer){
+  const trail = feature.properties
   layer.bindPopup(
-    
+
   )
 }
 
@@ -58,7 +63,14 @@ export default connect(
   }),
   dispatch => ({
     actions: {
-      map: bindActionCreators(actions.map, dispatch)
+      map: bindActionCreators(actions.map, dispatch),
+      distance: bindActionCreators(actions.distance, dispatch) //wrap all functions in this object with the dispatch actions
+      //const bindActionCreators = (obj, dispatch) => (
+      //  Object.keys(obj).reduce((o, k) => {
+      //    o[k] = () => dispatch(o[k](arguments))//wrap all functions with dispatch
+      //    reutrn o
+      //  }, 
+      //{})
     }
   })
 )(map)

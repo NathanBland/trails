@@ -1,14 +1,29 @@
+$primary-color: #123812
+
 body
   // background-color: rgba(23, 23, 23, 0.85)
+  color: $primary-color
 .grid
   width: 100%
   display: flex
   box-sizing: border-box
   flex-flow: row wrap
+.button 
+  background-color: $primary-color
+  border: .1rem solid $primary-color
+  &:hover
+    background-color: $primary-color
+    border: .1rem solid $primary-color
+    transition: 200ms all ease-in-out;
+    border: .1rem dashed #DBDEDB;
 
+button.button-clear
+  color: $primary-color
+  
 .header
   text-align: center
   width: 100%
+  
 .seperator
   margin-top: 1.5rem
   margin-bottom: 1.5rem
@@ -16,9 +31,12 @@ body
 .map__options
   position: absolute
   z-index: 10
-  margin-left: 4.5rem
+  margin-left: 4rem
   padding: 1rem
   margin-top: -4.85rem
+  left: 0
+  i
+    margin-right: .5em
 
 .map__options--settings
   background-color: white
@@ -52,6 +70,11 @@ body
   max-height: 89vh
   overflow-y: auto
   animation-duration: 1s
+  margin-left: .1em
+
+.trail__List--loading
+  margin-left: 1em
+  margin-right: 1em
 
 .trail__item
   background-color: rgb(30, 95, 30)
@@ -82,7 +105,12 @@ body
   list-style: none
   li span
     font-weight: bold
-
+    
+.trail__item--actions
+  display: flex
+  justify-content: space-between
+  margin-left: .5em
+  margin-right: .5em
 /* media queries */
 @media (max-width: 800px)
   #root
