@@ -3,6 +3,7 @@ export default (state = {
     loading: false,
     data: []
   },
+  active: '',
   center: [39.5501, -105.7821],
   zoom: 10
 }, {
@@ -11,11 +12,29 @@ export default (state = {
 }) => {
   switch(type){
   case 'GET_GEOJSON':
-    return Object.assign({}, state, { geojson: Object.assign({}, state.geojson, { loading: true }) })
+    return {
+      ...state,
+      geojson: {
+        state.geojson,
+        loading: true
+      }
+    }
   case 'SET_MAP':
-    return Object.assign({}, state, payload)
+    return {...state, payload }
   case 'SET_GEOJSON':
-    return Object.assign({}, state, { geojson: Object.assign({}, state.geojson, { loading: false, data: payload }) })
+    return {
+      ...state,
+      geojson: {
+        ...state.geojson,
+        loading: false,
+        data: payload
+      }
+    }
+  case 'SET_ACTIVE':
+    return {
+      ...state,
+      active: payload
+    }
   default:
     return state
   }
