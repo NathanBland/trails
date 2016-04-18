@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import actions from '../actions'
+import actions from '../../actions'
 import TrailItem from './trailItem'
+
 const Loader = (props) => (<h2 className='trail__List--loading animated infinite pulse'>Loading trails...</h2>)
 
 const list = ({
@@ -19,20 +20,21 @@ const list = ({
       }
       </h2>
       {trails.map(trail => (
-        <TrailItem key={trail._id} trail={trail} distance={distances[trail._id]}/>
+        <TrailItem key={trail._id} actionts={actions} trail={trail} distance={distances[trail._id]}/>
       ))}
     </div>
   )
 
 export default connect(state => ({
   trails: state.map.geojson.data
-  .filter(layer => layer.properties.name || layer.properties.NAME)
-  .map(layer => Object.assign({}, layer.properties, { _id: layer._id })), //Mutation is bad M'kay
+    .filter(layer => layer.properties.name || layer.properties.NAME)
+    .map(layer => Object.assign({}, layer.properties, { _id: layer._id })),
   loading: state.map.geojson.loading,
   distances: state.distances
 }),
 dispatch => ({
   actions: {
-    list: bindActionCreators(actions.list, dispatch)
+    list: bindActionCreators(actions.list, dispatch),
+    map: bindActionCreators(actions.map, dispatch)
   }
 }))(list)

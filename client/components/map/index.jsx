@@ -3,8 +3,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Map, TileLayer, GeoJson, Popup } from 'react-leaflet'
 
-import actions from '../actions'
-import { getDefaults } from '../utils'
+import actions from '../../actions'
+import { getDefaults } from '../../utils'
 import Tooltip from './mapToolTip'
 
 const myStyle = {
@@ -69,7 +69,7 @@ export default connect(
       //  Object.keys(obj).reduce((o, k) => {
       //    o[k] = () => dispatch(o[k](arguments))//wrap all functions with dispatch
       //    reutrn o
-      //  }, 
+      //  },
       //{})
     }
   })

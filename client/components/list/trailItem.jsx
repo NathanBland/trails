@@ -1,13 +1,13 @@
 import React from 'react'
-import actions from '../actions'
 
 const trailItem = ({
     trail,
-    distance
+    distance,
+    actions
 }) => (
     <div
         className="trail__item"
-        // onClick={actions.list.highlight.bind(this, trail._id)}
+        onClick={actions.map.setActive(trail._id)}
         >
         <div className="trail__item--body">
             <div className="trail__item--header">
@@ -16,7 +16,7 @@ const trailItem = ({
             <ul className="trail__item--details">
                 <li>
                 <span>
-                    distance: 
+                    distance:
                 </span>
                 { distance } Miles
                 </li>
@@ -27,6 +27,6 @@ const trailItem = ({
             </div>
         </div>
     </div>
-)        
-        
+)
+
 export default trailItem
