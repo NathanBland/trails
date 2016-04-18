@@ -20,7 +20,7 @@ export default (state = {
       }
     }
   case 'SET_MAP':
-    return {...state, payload }
+    return {...state, ...payload }
   case 'SET_GEOJSON':
     return {
       ...state,
