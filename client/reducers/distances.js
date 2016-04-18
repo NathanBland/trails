@@ -3,7 +3,7 @@ export default (state = {}, {type, payload}) => {
     case 'CLEAR_LENGTHS':
       return {}
     case 'ADD_LENGTH':
-      return [
+      return {
         ...state,
         [payload.id]: payload.dist
       }
