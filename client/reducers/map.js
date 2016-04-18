@@ -15,7 +15,7 @@ export default (state = {
     return {
       ...state,
       geojson: {
-        state.geojson,
+        ...state.geojson,
         loading: true
       }
     }
