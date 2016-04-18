@@ -15,12 +15,12 @@ export default (state = {
     return {
       ...state,
       geojson: {
-        state.geojson,
+        ...state.geojson,
         loading: true
       }
     }
   case 'SET_MAP':
-    return {...state, payload }
+    return {...state, ...payload }
   case 'SET_GEOJSON':
     return {
       ...state,
