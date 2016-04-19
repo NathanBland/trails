@@ -20,7 +20,7 @@ const list = ({
       }
       </h2>
       {trails.map(trail => (
-        <TrailItem key={trail._id} actionts={actions} trail={trail} distance={distances[trail._id]}/>
+        <TrailItem key={trail._id} actions={actions} trail={trail} /*distance={distances[trail._id]}*//>
       ))}
     </div>
   )

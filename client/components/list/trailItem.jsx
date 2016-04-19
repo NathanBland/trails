@@ -7,7 +7,7 @@ const trailItem = ({
 }) => (
     <div
         className="trail__item"
-        onClick={actions.map.setActive(trail._id)}
+        //onClick={actions.map.setActive(trail._id)}
         >
         <div className="trail__item--body">
             <div className="trail__item--header">
@@ -22,6 +22,7 @@ const trailItem = ({
                 </li>
             </ul>
             <div className='trail__item--actions'>
+                <button className='button' onClick={actions.map.setActive(trail._id)}><i className="fa fa-info" aria-hidden="true"></i> Get Details </button>
                 <button className='button'><i className="fa fa-download" aria-hidden="true"></i> Enable Offline </button>
                 <button className='button'><i className="fa fa-map-o" aria-hidden="true"></i> Get Directions </button>
             </div>
