@@ -12,12 +12,18 @@ const myStyle = {
   weight: 5,
   opacity: 0.65
 }
+const activeStyle = {
+  color: '#42310F',
+  weight: 5,
+  opacity: 0.65
+}
 const defs = getDefaults()
 
 const map = ({
   zoom,
   GeoJSON,
-  actions
+  actions,
+  active
 }) => (
   <Map
     id="map"
@@ -34,9 +40,17 @@ const map = ({
       <GeoJson
         key={feature._id}
         data={feature}
-        style={myStyle}
+        style={feature._id === active
+          ? activeStyle
+          : myStyle
+        }
       >
-        <Tooltip distance={actions.distance} trailName={(feature.properties.NAME || feature.properties.name)}/>
+        <Tooltip distance={actions.distance} trailName={(feature.properties.NAME || feature.properties.name)}
+        isActive={
+          feature._id === active
+          ? true
+          : false
+        }/>
       </GeoJson>
     )) }
   </Map>
@@ -59,7 +73,8 @@ export default connect(
   state => ({
     center: state.map.center,
     zoom: state.map.zoom,
-    GeoJSON: state.map.geojson
+    GeoJSON: state.map.geojson,
+    active: state.map.active
   }),
   dispatch => ({
     actions: {

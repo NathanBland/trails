@@ -10,7 +10,8 @@ const list = ({
   trails,
   loading,
   actions,
-  distances
+  distances,
+  active
 }) => (
     <div className="trail__List fadeIn">
       <h2 className="header">
@@ -20,7 +21,13 @@ const list = ({
       }
       </h2>
       {trails.map(trail => (
-        <TrailItem key={trail._id} actions={actions} trail={trail} /*distance={distances[trail._id]}*//>
+        <TrailItem key={trail._id} actions={actions} trail={trail} distance={distances[trail._id]}
+          isActive={
+            active === trail._id
+            ? true
+            : false
+          }
+        />
       ))}
     </div>
   )
@@ -30,7 +37,8 @@ export default connect(state => ({
     .filter(layer => layer.properties.name || layer.properties.NAME)
     .map(layer => Object.assign({}, layer.properties, { _id: layer._id })),
   loading: state.map.geojson.loading,
-  distances: state.distances
+  distances: state.distances,
+  active: state.map.active
 }),
 dispatch => ({
   actions: {

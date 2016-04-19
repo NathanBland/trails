@@ -3,11 +3,16 @@ import React from 'react'
 const trailItem = ({
     trail,
     distance,
-    actions
+    actions,
+    isActive
 }) => (
     <div
-        className="trail__item"
-        //onClick={actions.map.setActive(trail._id)}
+        className={isActive
+            ? 'trail__item trail__item--active'
+            : 'trail__item'
+            }
+        
+        onClick={() => actions.map.setActive(trail._id)}
         >
         <div className="trail__item--body">
             <div className="trail__item--header">
