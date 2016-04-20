@@ -1,4 +1,4 @@
-import Fetch from 'fetch'
+import 'whatwg-fetch'
 import { clearLengths } from './length'
 export function getGeoJSON(ev) {
   return (dispatch, getState) => {

@@ -35,7 +35,7 @@ const list = ({
 export default connect(state => ({
   trails: state.map.geojson.data
     .filter(layer => layer.properties.name || layer.properties.NAME)
-    .map(layer => Object.assign({}, layer.properties, { _id: layer._id })),
+    .map(layer => ({ ...layer.properties, _id: layer._id })),
   loading: state.map.geojson.loading,
   distances: state.distances,
   active: state.map.active

@@ -83,10 +83,24 @@ button.button-clear
   display: flex
   align-items: flex-start
   box-sizing: border-box
+  cursor: pointer
+  .trail__item--details
+    display: block
+  .button
+    display: none
+  .button--details
+    display: inline-block
 
 .trail__item--active
-  background-color: #1E2F5F
-
+  background-color: #36AB36
+  cursor: unset
+  .trail__item--details
+    display: block
+  .button
+    display: inline-block
+  .button--details
+    display: none
+    
 .trail__item--header
   flex: 1
   margin-left: 1em

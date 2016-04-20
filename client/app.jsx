@@ -1,6 +1,11 @@
+/*global fetch
+  global navigator
+*/
+import 'babel-polyfill'
 import ReactDOM from 'react-dom'
 import React from 'react'
 import { createStore } from 'redux'
+import 'whatwg-fetch'
 
 import App from './components'
 import reducer from './reducers'
@@ -13,11 +18,13 @@ const store = createStore(
   { map: options },
   middleware
 )
+
+initializeGeoJSON()
+getLocation()
 ReactDOM.render(
   <App store={store} />,
   document.querySelector('.grid')
 )
-initializeGeoJSON()
 
 function initializeGeoJSON(){
   store.dispatch({
@@ -34,4 +41,14 @@ function initializeGeoJSON(){
         payload: newJSON
       })
     })
+}
+
+function getLocation() {
+  if (navigator) {
+    navigator.geolocation.getCurrentPosition(function(pos){
+      console.log('pos:', pos)
+    }, function(rejcted){
+      console.log('uh oh:', rejcted)
+    })
+  }
 }

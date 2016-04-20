@@ -13,8 +13,8 @@ const myStyle = {
   opacity: 0.65
 }
 const activeStyle = {
-  color: '#42310F',
-  weight: 5,
+  color: '#36AB36',
+  weight: 10,
   opacity: 0.65
 }
 const defs = getDefaults()
@@ -38,27 +38,35 @@ const map = ({
     />
     { GeoJSON.data.map(feature => (
       <GeoJson
+        {...active}
         key={feature._id}
         data={feature}
-        style={feature._id === active
-          ? activeStyle
-          : myStyle
-        }
+        style={getCurrentStyle(active, feature)}
+        {...getCurrentStyle(active, feature)}
+        onClick={() => actions.map.setActive(feature._id)}
       >
-        <Tooltip distance={actions.distance} trailName={(feature.properties.NAME || feature.properties.name)}
-        isActive={
-          feature._id === active
-          ? true
-          : false
-        }/>
+        <Tooltip{...active} distance={actions.distance} trailName={(feature.properties.NAME || feature.properties.name)}
+        isActive={getActive(feature, active)}
+        {...getActive(feature, active)}
+          />
       </GeoJson>
     )) }
   </Map>
 )
 
-function getLocation() {
-  if (navigator) {
-    navigator.geolocation.getCurrentPosition(successFunc, failFunc)
+function getActive(feature, active) {
+  if (feature._id === active) {
+    return true
+  } else {
+    return false
+  }
+}
+
+function getCurrentStyle(active, feature) {
+  if (feature._id === active) {
+    return activeStyle
+  } else {
+    return myStyle
   }
 }
 
