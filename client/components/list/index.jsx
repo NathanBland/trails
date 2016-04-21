@@ -21,9 +21,13 @@ const list = ({
       }
       </h2>
       {trails.map(trail => (
-        <TrailItem key={trail._id} actions={actions} trail={trail} distance={distances[trail._id]}
+        <TrailItem
+          key={trail._id}
+          actions={actions}
+          trail={trail}
+          distance={distances[trail._id]}
           isActive={
-            active === trail._id
+            (active === trail._id)
             ? true
             : false
           }
