@@ -38,14 +38,15 @@ const map = ({
     />
     { GeoJSON.data.map(feature => (
       <GeoJson
-        {...active}
         key={feature._id}
         data={feature}
-        style={getActive(active, feature) ? activeStyle : myStyle}
-        {...getActive(active, feature) ? activeStyle : myStyle}
+        style={getCurrentStyle(active, feature)}
+        {...getCurrentStyle(active, feature)}
         onClick={() => actions.map.setActive(feature._id)}
       >
-        <Tooltip{...active} distance={actions.distance} trailName={(feature.properties.NAME || feature.properties.name)}
+        <Tooltip 
+        distance={actions.distance} 
+        trailName={(feature.properties.NAME || feature.properties.name)}
         isActive={getActive(feature, active)}
         {...getActive(feature, active)}
           />
@@ -57,7 +58,8 @@ const map = ({
 const getActive = (feature, active) => feature._id === active
 
 function getCurrentStyle(active, feature) {
-  if (feature._id === active) {
+  
+  if (getActive(feature, active)) {
     return activeStyle
   } else {
     return myStyle
