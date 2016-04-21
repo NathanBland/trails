@@ -57,9 +57,11 @@ const map = ({
 
 const getActive = (feature, active) => feature._id === active
 
-const getCurrentStyle = (active, feature) => getActive(feature, active) 
-  ? activeStyle
-  : myStyle
+const getCurrentStyle = (active, feature) => (
+  getActive(feature, active) 
+    ? activeStyle
+    : myStyle
+)
 
 function eachFeature(feature, layer){
   const trail = feature.properties
