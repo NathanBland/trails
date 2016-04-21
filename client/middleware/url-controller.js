@@ -7,6 +7,9 @@ export function updateURL (store){
       const results = next(action)
       const state = store.getState()
       window.location.hash = `${state.map.center},${state.map.zoom}`
+      if (state.map.active !== '') {
+        //window.location.hash += `,${state.map.active}`
+      }
       return results
     }
   }

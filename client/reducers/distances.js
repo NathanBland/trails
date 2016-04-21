@@ -3,7 +3,10 @@ export default (state = {}, {type, payload}) => {
     case 'CLEAR_LENGTHS':
       return {}
     case 'ADD_LENGTH':
-      return Object.assign({}, state, { [payload.id]: payload.dist })
+      return {
+        ...state,
+        [payload.id]: payload.dist
+      }
     default:
       return state
   }

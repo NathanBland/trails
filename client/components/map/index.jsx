@@ -3,8 +3,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Map, TileLayer, GeoJson, Popup } from 'react-leaflet'
 
-import actions from '../actions'
-import { getDefaults } from '../utils'
+import actions from '../../actions'
+import { getDefaults } from '../../utils'
 import Tooltip from './mapToolTip'
 
 const myStyle = {
@@ -12,12 +12,18 @@ const myStyle = {
   weight: 5,
   opacity: 0.65
 }
+const activeStyle = {
+  color: '#36AB36',
+  weight: 10,
+  opacity: 0.65
+}
 const defs = getDefaults()
 
 const map = ({
   zoom,
   GeoJSON,
-  actions
+  actions,
+  active
 }) => (
   <Map
     id="map"
@@ -34,19 +40,28 @@ const map = ({
       <GeoJson
         key={feature._id}
         data={feature}
-        style={myStyle}
+        style={getCurrentStyle(active, feature)}
+        {...getCurrentStyle(active, feature)}
+        onClick={() => actions.map.setActive(feature._id)}
       >
-        <Tooltip distance={actions.distance} trailName={(feature.properties.NAME || feature.properties.name)}/>
+        <Tooltip 
+        distance={actions.distance} 
+        trailName={(feature.properties.NAME || feature.properties.name)}
+        isActive={getActive(feature, active)}
+        {...getActive(feature, active)}
+          />
       </GeoJson>
     )) }
   </Map>
 )
 
-function getLocation() {
-  if (navigator) {
-    navigator.geolocation.getCurrentPosition(successFunc, failFunc)
-  }
-}
+const getActive = (feature, active) => feature._id === active
+
+const getCurrentStyle = (active, feature) => (
+  getActive(feature, active) 
+    ? activeStyle
+    : myStyle
+)
 
 function eachFeature(feature, layer){
   const trail = feature.properties
@@ -59,7 +74,8 @@ export default connect(
   state => ({
     center: state.map.center,
     zoom: state.map.zoom,
-    GeoJSON: state.map.geojson
+    GeoJSON: state.map.geojson,
+    active: state.map.active
   }),
   dispatch => ({
     actions: {
@@ -69,7 +85,7 @@ export default connect(
       //  Object.keys(obj).reduce((o, k) => {
       //    o[k] = () => dispatch(o[k](arguments))//wrap all functions with dispatch
       //    reutrn o
-      //  }, 
+      //  },
       //{})
     }
   })

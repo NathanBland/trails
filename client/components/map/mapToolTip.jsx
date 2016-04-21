@@ -1,12 +1,15 @@
 import React from 'react'
 import { Popup } from 'react-leaflet'
-const Tooltip = ({distance, trailName, ...props}) => (
+const Tooltip = ({distance, trailName, isActive, ...props}) => (
   <Popup {...props}>
     <span className='trail__tooltip'>
       <h5>
         { trailName || 'No name given' }
       </h5>
-      <p>Estimated Distance: {guessLength(props.popupContainer, distance.addLength)} Miles
+      <p>Estimated Distance: {isActive 
+      ? guessLength(props.popupContainer, distance.addLength) + 'Miles'
+      : '' 
+      }
       </p>
     </span>
   </Popup>
