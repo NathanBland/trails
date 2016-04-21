@@ -6,9 +6,9 @@ const Tooltip = ({distance, trailName, isActive, ...props}) => (
       <h5>
         { trailName || 'No name given' }
       </h5>
-      <p>Estimated Distance: {isActive.b 
-      ? '' 
-      : guessLength(props.popupContainer, distance.addLength) + 'Miles'
+      <p>Estimated Distance: {isActive 
+      ? guessLength(props.popupContainer, distance.addLength) + 'Miles'
+      : '' 
       }
       </p>
     </span>

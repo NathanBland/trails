@@ -41,8 +41,8 @@ const map = ({
         {...active}
         key={feature._id}
         data={feature}
-        style={getCurrentStyle(active, feature)}
-        {...getCurrentStyle(active, feature)}
+        style={getActive(active, feature) ? activeStyle : myStyle}
+        {...getActive(active, feature) ? activeStyle : myStyle}
         onClick={() => actions.map.setActive(feature._id)}
       >
         <Tooltip{...active} distance={actions.distance} trailName={(feature.properties.NAME || feature.properties.name)}
@@ -54,13 +54,7 @@ const map = ({
   </Map>
 )
 
-function getActive(feature, active) {
-  if (feature._id === active) {
-    return true
-  } else {
-    return false
-  }
-}
+const getActive = (feature, active) => feature._id === active
 
 function getCurrentStyle(active, feature) {
   if (feature._id === active) {

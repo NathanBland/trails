@@ -84,7 +84,7 @@ button.button-clear {
   box-sizing: border-box;
   cursor: pointer; }
   .trail__item .trail__item--details {
-    display: block; }
+    display: none; }
   .trail__item .button {
     display: none; }
   .trail__item .button--details {
