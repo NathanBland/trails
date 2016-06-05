@@ -29,7 +29,8 @@
     "babel-preset-stage-0": "^6.5.0",
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
-    "uglifyify": "^3.0.1"
+    "uglifyify": "^3.0.1",
+    "watchify": "^3.7.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
