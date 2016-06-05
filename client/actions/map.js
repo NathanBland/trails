@@ -1,5 +1,4 @@
 import 'whatwg-fetch'
-import { clearLengths } from './length'
 export function getGeoJSON(ev) {
   return (dispatch, getState) => {
     const map = ev.target
@@ -26,7 +25,6 @@ export function getGeoJSON(ev) {
         return res.json()
       })
       .then(function(newJSON) {
-        clearLengths() //get rid of other lengths
         dispatch({
           type: 'SET_GEOJSON',
           payload: newJSON
