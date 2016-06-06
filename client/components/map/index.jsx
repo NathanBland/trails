@@ -51,6 +51,7 @@ const map = ({
           distance={distances[feature._id]}
           trailName={(feature.properties.NAME || feature.properties.name)}
           isActive={getActive(feature, active)}
+          autoPan={false}
         />
       </GeoJson>
     )) }
