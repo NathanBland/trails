@@ -31,7 +31,7 @@ function initializeGeoJSON(){
     type:'GET_GEOJSON'
   })
   
-  fetch('/api/trails?center=' + JSON.stringify(options.center.reverse()))
+  fetch('/api/trails?center=' + JSON.stringify([options.center[1], options.center[0]]))
     .then(function(res) {
       return res.json()
     })
