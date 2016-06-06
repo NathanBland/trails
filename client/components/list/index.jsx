@@ -4,8 +4,6 @@ import { bindActionCreators } from 'redux'
 import actions from '../../actions'
 import TrailItem from './trailItem'
 
-const Loader = (props) => (<h2 className='trail__List--loading animated infinite pulse'>Loading trails...</h2>)
-
 const list = ({
   trails,
   loading,
@@ -14,11 +12,14 @@ const list = ({
   active
 }) => (
     <div className="trail__List fadeIn">
-      <h2 className="header">
-      {loading
-        ? (<Loader />)
-        : ('Current Trails')
-      }
+      <h2 className={'header ' + (loading
+       ? 'trail__List--loading animated infinite pulse'
+       : '' )}
+      >
+        {loading
+          ? 'Loading trails...'
+          : 'Current Trails'
+        }
       </h2>
       {trails.map(trail => (
         <TrailItem

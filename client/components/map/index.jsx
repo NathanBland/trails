@@ -23,7 +23,8 @@ const map = ({
   zoom,
   GeoJSON,
   actions,
-  active
+  active,
+  distances
 }) => (
   <Map
     id="map"
@@ -44,12 +45,13 @@ const map = ({
         {...getCurrentStyle(active, feature)}
         onClick={() => actions.map.setActive(feature._id)}
       >
-        <Tooltip 
-        distance={actions.distance} 
-        trailName={(feature.properties.NAME || feature.properties.name)}
-        isActive={getActive(feature, active)}
-        {...getActive(feature, active)}
-          />
+        <Tooltip
+          id={feature._id}
+          actions={actions}
+          distance={distances[feature._id]}
+          trailName={(feature.properties.NAME || feature.properties.name)}
+          isActive={getActive(feature, active)}
+        />
       </GeoJson>
     )) }
   </Map>
@@ -58,7 +60,7 @@ const map = ({
 const getActive = (feature, active) => feature._id === active
 
 const getCurrentStyle = (active, feature) => (
-  getActive(feature, active) 
+  getActive(feature, active)
     ? activeStyle
     : myStyle
 )
@@ -72,6 +74,7 @@ function eachFeature(feature, layer){
 
 export default connect(
   state => ({
+    distances: state.distances,
     center: state.map.center,
     zoom: state.map.zoom,
     GeoJSON: state.map.geojson,
@@ -80,13 +83,7 @@ export default connect(
   dispatch => ({
     actions: {
       map: bindActionCreators(actions.map, dispatch),
-      distance: bindActionCreators(actions.distance, dispatch) //wrap all functions in this object with the dispatch actions
-      //const bindActionCreators = (obj, dispatch) => (
-      //  Object.keys(obj).reduce((o, k) => {
-      //    o[k] = () => dispatch(o[k](arguments))//wrap all functions with dispatch
-      //    reutrn o
-      //  },
-      //{})
+      distance: bindActionCreators(actions.distance, dispatch)
     }
   })
 )(map)
