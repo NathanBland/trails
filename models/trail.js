@@ -19,6 +19,6 @@ const Trail = new Schema({
     'FCODE': String,
     'length_km': Number
   }
-}, {collection: 'newTrails'})
+}, {collection: 'trails'})
 
 module.exports = mongoose.model('trail', Trail)
