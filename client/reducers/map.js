@@ -35,6 +35,11 @@ export default (state = {
       ...state,
       active: payload
     }
+  case 'FOUND_USER':
+    return {
+      ...state,
+      userLocation: payload.location
+    }
   default:
     return state
   }
