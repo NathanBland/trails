@@ -7,6 +7,12 @@ export default class Tooltip extends Component {
     this.guessLength()
   }
 
+  componentDidUpdate(){
+    if(this.props.isActive){
+      this.props.popupContainer.openPopup()
+    }
+  }
+
   guessLength() { //get the id out of the layer?
     if(this.props.distance) return // we already mounted this guy once
 
@@ -30,9 +36,9 @@ export default class Tooltip extends Component {
   }
 
   render(){
-    const { trailName, distance, ...props } = this.props
+    const { trailName, distance, ...props, isActive } = this.props
     return (
-      <Popup {...props}>
+      <Popup {...props} >
       <span className='trail__tooltip'>
         <h5>
           { trailName || 'No name given' }
