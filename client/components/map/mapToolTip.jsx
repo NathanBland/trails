@@ -8,9 +8,9 @@ export default class Tooltip extends Component {
   }
 
   guessLength() { //get the id out of the layer?
-    if(this.props.id in this.props.distances) return // we already mounted this guy once
+    if(this.props.distance) return // we already mounted this guy once
 
-    const { popupContainer: layer, distance: { addLength } } = this.props
+    const { popupContainer: layer, actions: {distance: { addLength }} } = this.props
     const { _latlngs, feature } = layer._layers[layer._leaflet_id-1]
     let tempLatLng = null
 

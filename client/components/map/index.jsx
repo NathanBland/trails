@@ -47,8 +47,8 @@ const map = ({
       >
         <Tooltip
           id={feature._id}
-          distance={actions.distance}
-          distances={distances}
+          actions={actions}
+          distance={distances[feature._id]}
           trailName={(feature.properties.NAME || feature.properties.name)}
           isActive={getActive(feature, active)}
         />
