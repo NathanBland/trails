@@ -30,7 +30,7 @@ export default class Tooltip extends Component {
   }
 
   render(){
-    const { trailName, distance, id, ...props } = this.props
+    const { trailName, distance, ...props } = this.props
     return (
       <Popup {...props}>
       <span className='trail__tooltip'>
