@@ -7,8 +7,8 @@ export default class Tooltip extends Component {
     this.guessLength()
   }
 
-  componentDidUpdate(){
-    if(this.props.isActive){
+  componentWillUpdate(next){
+    if(next.isActive){
       this.props.popupContainer.openPopup()
     }
   }
