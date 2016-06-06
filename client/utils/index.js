@@ -3,28 +3,28 @@ export function getDefaults() {
   const data = window.location.hash.substring(1).split(',')
   let stashed
   switch(data.length){
-  
-    case 3:
-      stashed = {
-        center: [
-          parseFloat(data[0]),
-          parseFloat(data[1])
-        ],
-        zoom: parseFloat(data[2]),
-        active: ''
-      }
-      break
-    case 4:
-      stashed = {
-        center: [
-          parseFloat(data[0]),
-          parseFloat(data[1])
-        ],
-        zoom: parseFloat(data[2]),
-        active: data[3]
-      }
-    default:
-      stashed = {}
+  case 3:
+    stashed = {
+      center: [
+        parseFloat(data[0]),
+        parseFloat(data[1])
+      ],
+      zoom: parseFloat(data[2]),
+      active: undefined
+    }
+    break
+  case 4:
+    stashed = {
+      center: [
+        parseFloat(data[0]),
+        parseFloat(data[1])
+      ],
+      zoom: parseFloat(data[2]),
+      active: data[3]
+    }
+    break
+  default:
+    stashed = {}
   }
 
 
