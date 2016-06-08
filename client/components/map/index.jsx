@@ -6,6 +6,7 @@ import Control from 'react-leaflet-control'
 import actions from '../../actions'
 import { getDefaults } from '../../utils'
 import Tooltip from './mapToolTip'
+import DivIcon from 'react-leaflet-div-icon'
 
 const myStyle = {
   color: '#006400',
@@ -19,6 +20,8 @@ const activeStyle = {
 }
 const defs = getDefaults()
 
+let leafletMap; //used for the leafletElement if it exists.
+
 const map = ({
   zoom,
   GeoJSON,
@@ -27,13 +30,12 @@ const map = ({
   distances,
   userLocation
 }) => {
-  let map; //used for the leafletElement if it exists.
   return (
     <Map
       id="map"
       center={defs.center}
       zoom={zoom}
-      ref={(el) => el ? map = el.leafletElement : null}
+      ref={(el) => el ? leafletMap = el.leafletElement : null}
       onLeafletMoveend={(ev) => actions.map.getGeoJSON(ev)}
       onLeafletResize={(ev) => actions.map.getGeoJSON(ev)}
     >
@@ -45,14 +47,25 @@ const map = ({
         userLocation 
           ? (
             <Control position="topright">
-              <button onClick={() => map.panTo(userLocation)}>
+              <button onClick={() => leafletMap.panTo(userLocation)}>
                 Find Me!
               </button>
             </Control>
           )
           : null
       }
-      
+      {
+        userLocation
+        ? (
+          <DivIcon position={userLocation} layerContainer={leafletMap}>
+            <svg viewBox="0 0 120 120" version="1.1"
+              xmlns="http://www.w3.org/2000/svg">
+              <circle cx="60" cy="60" r="50"/>
+            </svg>
+          </DivIcon>
+        )
+        : null
+      }
       { GeoJSON.data.map(feature => (
         <GeoJson
           key={feature._id}
