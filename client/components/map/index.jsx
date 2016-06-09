@@ -75,7 +75,7 @@ const map = ({
           data={feature}
           style={getCurrentStyle(active, feature)}
           {...getCurrentStyle(active, feature)}
-          onClick={() => actions.map.setActive(feature._id)}
+        onClick={function() {actions.map.setActive(feature._id); this._map.panTo(this.getBounds().getCenter());}}
         >
           <Tooltip
             id={feature._id}
