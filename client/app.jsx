@@ -46,7 +46,8 @@ function initializeGeoJSON(){
 function getLocation() {
   if (navigator) {
     navigator.geolocation.getCurrentPosition(function(pos){
-      console.log('pos:', pos)
+      console.log(pos)
+      store.dispatch({type: 'FOUND_USER', payload: {location: [pos.coords.latitude, pos.coords.longitude]}})
     }, function(rejcted){
       console.log('uh oh:', rejcted)
     })
