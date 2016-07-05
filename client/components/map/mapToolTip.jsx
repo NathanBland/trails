@@ -4,7 +4,7 @@ import { Popup } from 'react-leaflet'
 export default class Tooltip extends Component {
 
   componentWillMount(){
-    this.guessLength()
+    //this.guessLength()
   }
 
   componentWillUpdate(next){
@@ -16,7 +16,7 @@ export default class Tooltip extends Component {
   guessLength() { //get the id out of the layer?
     if(this.props.distance) return // we already mounted this guy once
 
-    const { popupContainer: layer, actions: {distance: { addLength }} } = this.props
+    const { layerContainer: layer, actions: {distance: { addLength }} } = this.props
     const { _latlngs, feature } = layer._layers[layer._leaflet_id-1]
     let tempLatLng = null
 
@@ -36,7 +36,10 @@ export default class Tooltip extends Component {
   }
 
   render(){
-    const { trailName, distance, ...props } = this.props
+    const { distances, feature, active, getActive,  ...props } = this.props
+    const distance = distances[feature._id]
+    const trailName = (feature.properties.NAME || feature.properties.name)
+    const isActive = getActive(feature, active)
     return (
       <Popup {...props} >
       <span className='trail__tooltip'>
@@ -50,3 +53,5 @@ export default class Tooltip extends Component {
     )
   }
 }
+
+

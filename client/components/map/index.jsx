@@ -2,6 +2,8 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Map, TileLayer, GeoJson, Popup } from 'react-leaflet'
+import Choropleth from 'react-leaflet-choropleth'
+
 import Control from 'react-leaflet-control'
 import actions from '../../actions'
 import { getDefaults } from '../../utils'
@@ -36,8 +38,8 @@ const map = ({
       center={defs.center}
       zoom={zoom}
       ref={(el) => el ? leafletMap = el.leafletElement : null}
-      onLeafletMoveend={(ev) => actions.map.getGeoJSON(ev)}
-      onLeafletResize={(ev) => actions.map.getGeoJSON(ev)}
+      onMoveend={(ev) => actions.map.getGeoJSON(ev)}
+      onResize={(ev) => actions.map.getGeoJSON(ev)}
     >
       <TileLayer
         url='https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'
@@ -69,24 +71,31 @@ const map = ({
         )
         : null
       }
-      { GeoJSON.data.map(feature => (
+      <Choropleth
+        data={GeoJSON.data}
+        valueProperty={(feature) => Math.random()}
+        scale={['#b3cde0', '#011f4b']}
+        steps={7}
+        mode='e'
+        style={getCurrentStyle.bind(this, active)}
+        onClick={function(ev) {
+          actions.map.setActive(ev.layer.feature._id);
+          this._map.panTo(this.getBounds().getCenter());
+        }}
+      >
+      </Choropleth>
+      
+      { /*GeoJSON.data.map(feature => (
         <GeoJson
           key={feature._id}
           data={feature}
           style={getCurrentStyle(active, feature)}
           {...getCurrentStyle(active, feature)}
-        onClick={function() {actions.map.setActive(feature._id); this._map.panTo(this.getBounds().getCenter());}}
+          onClick={function() {actions.map.setActive(feature._id); this._map.panTo(this.getBounds().getCenter());}}
         >
-          <Tooltip
-            id={feature._id}
-            actions={actions}
-            distance={distances[feature._id]}
-            trailName={(feature.properties.NAME || feature.properties.name)}
-            isActive={getActive(feature, active)}
-            autoPan={false}
-          />
+          
         </GeoJson>
-      )) }
+      )) */}
     </Map>
   )
 }
